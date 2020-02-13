@@ -3,10 +3,14 @@ package com.example.myapplication.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherService;
 import com.example.myapplication.data.response.WeatherResponse;
+
+import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,21 +25,43 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    private WeatherService weatherService;
+
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        weatherService = new WeatherService() {
+            @NotNull
+            @Override
+            public Call<WeatherResponse> getCurrentData(@NotNull final String city, @NotNull final String app_id) {
+                return null;
+
+            }
+        };
+
+
+
+
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(final View v) {
                 getCurrentData();
+
+
 
             }
         });
 
     }
+
+
+
 
     private void getCurrentData(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -55,8 +81,11 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
-                String temprature = String.valueOf(response.body().getMain().getTemp());
-                Log.d("Weather", temprature);
+                String temperature = String.valueOf(response.body().getMain().getTemp());
+                //String clouds = String.valueOf(response.body().getClouds());
+                Log.d("Weather", temperature);
+                temperature(temperature);
+                //clouds(clouds);
             }
 
             @Override
@@ -64,6 +93,24 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Weather", "Failure");
 
             }
+
+            private void temperature(String temperature) {
+
+                TextView textView = findViewById(R.id.textView);
+                textView.setText(temperature);
+            }
+
+          //  private void clouds(String clouds) {
+
+            //    TextView textView = findViewById(R.id.textView);
+              //  textView.setText(clouds);
+
+            //}
+
+
+
+
+
         });
     }
 }

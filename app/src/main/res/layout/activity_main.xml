@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+
+    <TextView
+        android:id="@+id/secondLine"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_marginBottom="684dp"
+        android:text="@string/temperature"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/firstLine"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:gravity="center_vertical"
+        android:text="@string/Cities"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/secondLine"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -25,6 +51,14 @@
         tools:text="Refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="OnClick" />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
