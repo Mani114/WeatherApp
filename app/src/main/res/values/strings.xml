@@ -4,4 +4,9 @@
     <string name="temperature">Temperature</string>
     <string name="description">Description</string>
     <string name="Cities">Cities</string>
+    <string name="Tehran">Tehran</string>
+    <string name="Stockholm">Stockholm</string>
+    <string name="Milan">Milan</string>
+    <string name="New_York">New York</string>
+    <string name="Beijing">Beijing</string>
 </resources>

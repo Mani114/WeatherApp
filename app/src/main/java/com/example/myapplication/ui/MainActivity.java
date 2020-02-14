@@ -3,14 +3,19 @@ package com.example.myapplication.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherService;
+import com.example.myapplication.data.response.Coord;
 import com.example.myapplication.data.response.WeatherResponse;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private WeatherService weatherService;
+
 
 
     @Override
@@ -33,17 +38,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        weatherService = new WeatherService() {
-            @NotNull
+
+
+        findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
             @Override
-            public Call<WeatherResponse> getCurrentData(@NotNull final String city, @NotNull final String app_id) {
-                return null;
+            public void onClick(final View v) {
 
             }
-        };
+        });
+
+        findViewById(R.id.Stockholm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+            }
+        });
+
+        findViewById(R.id.Milan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+            }
+        });
 
 
+        findViewById(R.id.New_York).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
 
+            }
+        });
+
+        findViewById(R.id.Beijing).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+
+            }
+        });
 
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -54,18 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 getCurrentData();
 
 
-
             }
         });
 
     }
 
-
-
-
-    private void getCurrentData(){
+    private void getCurrentData() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-       // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
 
@@ -75,17 +102,30 @@ public class MainActivity extends AppCompatActivity {
                 .client(client)
                 .build();
         WeatherService service = retrofit.create(WeatherService.class);
-        Call<WeatherResponse> call = service.getCurrentData("Stockholm", "a075f44e32a1e6f1519737f716ff8d00");
-
+        Call<WeatherResponse> call = service.getCurrentData("Tehran", "a075f44e32a1e6f1519737f716ff8d00");
 
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
-                String temperature = String.valueOf(response.body().getMain().getTemp());
+
+
+                double temp = response.body().getMain().getTemp();
+                // String temp = String.valueOf(response.body().getMain().getTemp());
+               // String coord = String.valueOf(response.body().getCoord());
+                temp = (temp - 273.15);
+            //    String tempconv = String.format("%.0f", temp);
+                temperature(temp);
+
+                //String temp = String.valueOf(response.body().getMain().getTemp());
+
+
+
+
                 //String clouds = String.valueOf(response.body().getClouds());
-                Log.d("Weather", temperature);
-                temperature(temperature);
+              //  Log.d("Weather", temperature);
+
                 //clouds(clouds);
+               // description(coord);
             }
 
             @Override
@@ -94,24 +134,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            private void temperature(String temperature) {
+            private void temperature(double temp) {
 
-                TextView textView = findViewById(R.id.textView);
-                textView.setText(temperature);
+                TextView textView = findViewById(R.id.Tehran_current_temperature);
+                textView.setText((temp) + "˚");
             }
 
-          //  private void clouds(String clouds) {
+           // private void description (String coord){
+
+             //   TextView textView = findViewById(R.id.textView);
+               // textView.setText(coord);
+
+
+            });
+
+            //  private void clouds(String clouds) {
 
             //    TextView textView = findViewById(R.id.textView);
-              //  textView.setText(clouds);
+            //  textView.setText(clouds);
 
             //}
 
 
 
-
-
-        });
     }
 }
 

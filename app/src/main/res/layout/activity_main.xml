@@ -7,30 +7,139 @@
     tools:context=".ui.MainActivity">
 
 
-    <TextView
-        android:id="@+id/secondLine"
-        android:layout_width="fill_parent"
-        android:layout_height="26dip"
-        android:layout_marginBottom="684dp"
-        android:text="@string/temperature"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/Tehran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Tehran"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:onClick="onClick"
+            tools:ignore="OnClick">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/Tehran_current_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current temperature"
+            android:textStyle="italic"
+            android:layout_margin="5dp"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/Stockholm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Stockholm"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:onClick="onClick"
+            tools:ignore="OnClick">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/Stockholm_current_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current temperature"
+            android:textStyle="italic"
+            android:layout_margin="5dp"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/Milan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Milan"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:onClick="onClick"
+            tools:ignore="OnClick">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/Milan_current_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current temperature"
+            android:textStyle="italic"
+            android:layout_margin="5dp"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/New_York"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/New_York"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:onClick="onClick"
+            tools:ignore="OnClick">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/New_York_current_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current temperature"
+            android:textStyle="italic"
+            android:layout_margin="5dp"
+            android:textSize="15sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/Beijing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Beijing"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:onClick="onClick"
+            tools:ignore="OnClick">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/Beijing_current_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current temperature"
+            android:textStyle="italic"
+            android:layout_margin="5dp"
+            android:textSize="15sp">
+        </TextView>
 
 
 
-    <TextView
-        android:id="@+id/firstLine"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="true"
-        android:gravity="center_vertical"
-        android:text="@string/Cities"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/secondLine"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+
+
+
+
+
+
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -56,9 +165,5 @@
         android:clickable="true"
         android:focusable="true"
         tools:ignore="OnClick" />
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
