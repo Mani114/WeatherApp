@@ -31,13 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
 
-
-
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
@@ -79,18 +76,23 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
 
-
             @Override
             public void onClick(final View v) {
-                getCurrentData();
-
+                getCurrentData("Tehran", R.id.Tehran_current_temperature);
+                getCurrentData("Stockholm", R.id.Stockholm_current_temperature);
+                getCurrentData("Milan", R.id.Milan_current_temperature);
+                getCurrentData("New York", R.id.New_York_current_temperature);
+                getCurrentData("Beijing", R.id.Beijing_current_temperature);
 
             }
         });
+    }
+
+    public void onClick(View view) {
 
     }
 
-    private void getCurrentData() {
+    private void getCurrentData(String city, final int viewid) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -102,30 +104,28 @@ public class MainActivity extends AppCompatActivity {
                 .client(client)
                 .build();
         WeatherService service = retrofit.create(WeatherService.class);
-        Call<WeatherResponse> call = service.getCurrentData("Tehran", "a075f44e32a1e6f1519737f716ff8d00");
+        Call<WeatherResponse> call = service.getCurrentData(city , "a075f44e32a1e6f1519737f716ff8d00");
 
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
 
-
                 double temp = response.body().getMain().getTemp();
                 // String temp = String.valueOf(response.body().getMain().getTemp());
-               // String coord = String.valueOf(response.body().getCoord());
+                // String coord = String.valueOf(response.body().getCoord());
                 temp = (temp - 273.15);
-            //    String tempconv = String.format("%.0f", temp);
-                temperature(temp);
+                //    String tempconv = String.format("%.0f", temp);
+                showTemperature(temp, viewid);
+
 
                 //String temp = String.valueOf(response.body().getMain().getTemp());
 
 
-
-
                 //String clouds = String.valueOf(response.body().getClouds());
-              //  Log.d("Weather", temperature);
+                //  Log.d("Weather", temperature);
 
                 //clouds(clouds);
-               // description(coord);
+                // description(coord);
             }
 
             @Override
@@ -134,29 +134,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            private void temperature(double temp) {
+            private void showTemperature(double temp, int viewid ) {
 
-                TextView textView = findViewById(R.id.Tehran_current_temperature);
+                TextView textView = findViewById(viewid);
                 textView.setText((temp) + "˚");
             }
 
-           // private void description (String coord){
+            // private void description (String coord){
 
-             //   TextView textView = findViewById(R.id.textView);
-               // textView.setText(coord);
+            //   TextView textView = findViewById(R.id.textView);
+            // textView.setText(coord);
 
 
-            });
+        });
 
-            //  private void clouds(String clouds) {
+        //  private void clouds(String clouds) {
 
-            //    TextView textView = findViewById(R.id.textView);
-            //  textView.setText(clouds);
+        //    TextView textView = findViewById(R.id.textView);
+        //  textView.setText(clouds);
 
-            //}
-
+        //}
 
 
     }
+
 }
 
