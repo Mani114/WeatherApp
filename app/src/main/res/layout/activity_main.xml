@@ -18,8 +18,9 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:onClick="onClick"
+            android:onClick="launchweatheractivity"
             tools:ignore="OnClick">
+
 
         </TextView>
 
@@ -42,7 +43,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:onClick="onClick"
+            android:onClick="launchweatheractivity"
             tools:ignore="OnClick">
 
         </TextView>
@@ -66,7 +67,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:onClick="onClick"
+            android:onClick="launchweatheractivity"
             tools:ignore="OnClick">
 
         </TextView>
@@ -90,7 +91,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:onClick="onClick"
+            android:onClick="launchweatheractivity"
             tools:ignore="OnClick">
 
         </TextView>
@@ -114,7 +115,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="20sp"
-            android:onClick="onClick"
+            android:onClick="launchweatheractivity"
             tools:ignore="OnClick">
 
         </TextView>

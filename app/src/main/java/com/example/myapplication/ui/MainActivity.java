@@ -1,45 +1,31 @@
 package com.example.myapplication.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.data.WeatherService;
-import com.example.myapplication.data.response.Coord;
-import com.example.myapplication.data.response.WeatherResponse;
-
-import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
-
-import java.util.List;
+import com.example.myapplication.WeatherActivity;
+import com.example.myapplication.data.WeatherProvider;
+import com.example.myapplication.data.WeatherProviderImpl;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class MainActivity extends AppCompatActivity {
 
+    public void launchweatheractivity(View view) {
 
-    @Override
-    protected void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        Intent intent = new Intent(this, WeatherActivity.class);
+        startActivity(intent);
 
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+
+                // getCurrentData("Tehran", R.id.Tehran);
+                // description on a new page
 
             }
         });
@@ -47,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Stockholm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                // description on a new page
 
             }
         });
@@ -57,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
         findViewById(R.id.New_York).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
 
@@ -87,76 +80,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+/*
+    public void onClick(final View view) {
 
-    public void onClick(View view) {
-
+        getCurrentData("Tehran", R.id.Tehran);
+        getCurrentData("Stockholm", R.id.Stockholm);
+        getCurrentData("Milan", R.id.Milan);
+        getCurrentData("New York", R.id.New_York);
+        getCurrentData("Beijing", R.id.Beijing);
     }
+*/
 
-    private void getCurrentData(String city, final int viewid) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    private void getCurrentData(final String city, final int viewid) {
 
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.openweathermap.org/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-        WeatherService service = retrofit.create(WeatherService.class);
-        Call<WeatherResponse> call = service.getCurrentData(city , "a075f44e32a1e6f1519737f716ff8d00");
-
-        call.enqueue(new Callback<WeatherResponse>() {
+        WeatherProvider weatherProvider = new WeatherProviderImpl();
+        weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
-            public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
-
-                double temp = response.body().getMain().getTemp();
-                // String temp = String.valueOf(response.body().getMain().getTemp());
-                // String coord = String.valueOf(response.body().getCoord());
-                temp = (temp - 273.15);
-                //    String tempconv = String.format("%.0f", temp);
-                showTemperature(temp, viewid);
-
-
-                //String temp = String.valueOf(response.body().getMain().getTemp());
-
-
-                //String clouds = String.valueOf(response.body().getClouds());
-                //  Log.d("Weather", temperature);
-
-                //clouds(clouds);
-                // description(coord);
+            public void onResult(final double temperature) {
+                showTemperature(temperature, viewid);
+              //  showHumidity(humidity, viewid);
             }
-
-            @Override
-            public void onFailure(final Call<WeatherResponse> call, final Throwable t) {
-                Log.d("Weather", "Failure");
-
-            }
-
-            private void showTemperature(double temp, int viewid ) {
-
-                TextView textView = findViewById(viewid);
-                textView.setText((temp) + "˚");
-            }
-
-            // private void description (String coord){
-
-            //   TextView textView = findViewById(R.id.textView);
-            // textView.setText(coord);
 
 
         });
 
-        //  private void clouds(String clouds) {
+    }
 
-        //    TextView textView = findViewById(R.id.textView);
-        //  textView.setText(clouds);
+    private void showTemperature(double temp, int viewid ) {
 
-        //}
+        //showTemperature(temp, viewid);
+        TextView textView = findViewById(viewid);
+        textView.setText((temp) + "˚");
+    }
+
+    
+/*
+    private void showHumidity (int humidity, viewid){
+        TextView textView = findViewById(viewid);
+        textView.setText((humidity) + "˚");
+
 
 
     }
+*/
+
 
 }
 

@@ -9,4 +9,6 @@
     <string name="Milan">Milan</string>
     <string name="New_York">New York</string>
     <string name="Beijing">Beijing</string>
+    <string name="WeatherActivity">WeatherActivity</string>
+    <string name="data">data</string>
 </resources>
