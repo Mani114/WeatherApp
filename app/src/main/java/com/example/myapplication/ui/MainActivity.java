@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.WeatherActivity;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 

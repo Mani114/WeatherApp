@@ -91,8 +91,6 @@ public class WeatherProviderImpl implements WeatherProvider{
 
         });
 
-
     }
-
 
 }

@@ -5,7 +5,6 @@ import com.example.myapplication.ui.Data;
 public interface WeatherProvider {
 
 
-
     interface TemperatureCallback {
 
          void onResult(int temperature);
@@ -17,11 +16,9 @@ public interface WeatherProvider {
 
      }
 
-
      void getCurrentTemperature (String city, TemperatureCallback callBack);
 
      void getData (String city, DataCallback callback);
-
 
 
 }

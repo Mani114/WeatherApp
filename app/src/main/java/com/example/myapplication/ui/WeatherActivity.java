@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 import com.example.myapplication.ui.CelsiusSymbol;
