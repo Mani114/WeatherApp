@@ -4,12 +4,13 @@ package com.example.myapplication.ui;
 
 public class Data {
 
+
     private String description;
     private int    humidity;
-    private double tempMax;
-    private double tempMin;
+    private int tempMax;
+    private int tempMin;
 
-    public Data(final String description, final int humidity, final double tempMax, final double tempMin) {
+    public Data(final String description, final int humidity, final int tempMax, final int tempMin) {
         this.description = description;
         this.humidity = humidity;
         this.tempMax = tempMax;
@@ -17,11 +18,11 @@ public class Data {
 
     }
 
-    public double getTempMin() {
+    public int getTempMin() {
         return tempMin;
     }
 
-    public double getTempMax() {
+    public int getTempMax() {
         return tempMax;
     }
 
@@ -33,5 +34,6 @@ public class Data {
 
         return description;
     }
+
 
 }

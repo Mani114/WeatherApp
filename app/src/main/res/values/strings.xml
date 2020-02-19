@@ -11,4 +11,6 @@
     <string name="Beijing">Beijing</string>
     <string name="WeatherActivity">WeatherActivity</string>
     <string name="data">data</string>
+    <string name="city">city</string>
+    <string name="cityname">cityname</string>
 </resources>

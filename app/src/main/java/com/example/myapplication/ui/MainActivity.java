@@ -1,5 +1,6 @@
 package com.example.myapplication.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,24 +16,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void launchweatheractivity(View view) {
+    public void launchweatheractivity(String city) {
 
         Intent intent = new Intent(this, WeatherActivity.class);
+        intent.putExtra("City", city);
         startActivity(intent);
+
+    }
+
+    @Override
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                launchweatheractivity("Tehran");
 
                 // getCurrentData("Tehran", R.id.Tehran);
                 // description on a new page
-
             }
         });
 
         findViewById(R.id.Stockholm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+               launchweatheractivity("Stockholm");
+
                 // description on a new page
 
             }
@@ -41,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Milan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                launchweatheractivity("Milan");
+
+
+
 
             }
         });
@@ -48,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.New_York).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                launchweatheractivity("New York");
+
 
             }
         });
@@ -55,16 +72,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Beijing).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                launchweatheractivity("Beijing");
+
 
             }
         });
-
-    }
-
-    @Override
-    protected void onCreate(@Nullable final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -80,23 +92,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-/*
-    public void onClick(final View view) {
-
-        getCurrentData("Tehran", R.id.Tehran);
-        getCurrentData("Stockholm", R.id.Stockholm);
-        getCurrentData("Milan", R.id.Milan);
-        getCurrentData("New York", R.id.New_York);
-        getCurrentData("Beijing", R.id.Beijing);
-    }
-*/
 
     private void getCurrentData(final String city, final int viewid) {
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
-            public void onResult(final double temperature) {
+            public void onResult(final int temperature) {
                 showTemperature(temperature, viewid);
               //  showHumidity(humidity, viewid);
             }
@@ -106,11 +108,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showTemperature(double temp, int viewid ) {
+    @SuppressLint("SetTextI18n")
+    private void showTemperature(int temp, int viewid ) {
 
         //showTemperature(temp, viewid);
         TextView textView = findViewById(viewid);
-        textView.setText((temp) + "˚");
+        textView.setText(CelsiusSymbol.toDisplayTemperatur(temp));
     }
 
     

@@ -10,14 +10,64 @@
     android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/weather_data"
+            android:id="@+id/city_name"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cityname"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="36sp"
+            android:gravity="center">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/data"
-            android:textStyle="italic"
+            android:textStyle="normal"
             android:layout_margin="5dp"
-            android:textSize="15sp">
+            android:textSize="25sp"
+            android:gravity="center"
+            >
         </TextView>
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data"
+            android:textStyle="normal"
+            android:layout_margin="5dp"
+            android:textSize="25sp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tempmax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data"
+            android:textStyle="normal"
+            android:layout_margin="5dp"
+            android:textSize="25sp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tempmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data"
+            android:textStyle="normal"
+            android:layout_margin="5dp"
+            android:textSize="25sp"
+            android:gravity="center">
+        </TextView>
+
 
 
 

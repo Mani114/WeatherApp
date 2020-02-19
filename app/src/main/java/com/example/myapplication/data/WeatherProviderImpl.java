@@ -36,32 +36,23 @@ public class WeatherProviderImpl implements WeatherProvider{
             @Override
             public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
 
-               // int humidity = response.body().getMain().getHumidity();
                 double temp = response.body().getMain().getTemp();
-                temp = (temp - 273.15);
-                callBack.onResult(temp);
-
+                int celsiusTemp = TemperatureConverter.getCelsius(temp);
+                callBack.onResult(celsiusTemp);
             }
 
             @Override
             public void onFailure(final Call<WeatherResponse> call, final Throwable t) {
                 Log.d("Weather", "Failure");
-
             }
-
         });
-
-
     }
-
     @Override
     public void getData(final String city, final DataCallback callback) {
-
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.openweathermap.org/")
@@ -75,8 +66,20 @@ public class WeatherProviderImpl implements WeatherProvider{
             @Override
             public void onResponse(final Call<WeatherResponse> call, final Response<WeatherResponse> response) {
 
-                Data data = new Data(response.body().getWeather().get(0).getDescription(), 4, 30, 1);
-                //todo replace values with real values
+
+                double minTemp = response.body().getMain().getTempMin();
+                double maxTemp = response.body().getMain().getTempMax();
+                int celsiusminTemp = TemperatureConverter.getCelsius(minTemp);
+                int celsiusmaxTemp = TemperatureConverter.getCelsius(maxTemp);
+
+
+                Data data = new Data(
+                        response.body().getWeather().get(0).getDescription(),
+                        response.body().getMain().getHumidity(),
+                        celsiusmaxTemp,
+                        celsiusminTemp
+                );
+
                 callback.onData(data);
             }
 
@@ -87,7 +90,6 @@ public class WeatherProviderImpl implements WeatherProvider{
             }
 
         });
-
 
 
     }

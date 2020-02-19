@@ -8,14 +8,14 @@ public interface WeatherProvider {
 
     interface TemperatureCallback {
 
-         void onResult(double temperature);
+         void onResult(int temperature);
 
      }
      interface DataCallback {
 
           void onData(Data data);
 
-              }
+     }
 
 
      void getCurrentTemperature (String city, TemperatureCallback callBack);
