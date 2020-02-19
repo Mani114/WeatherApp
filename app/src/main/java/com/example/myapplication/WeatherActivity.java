@@ -10,7 +10,6 @@ import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 import com.example.myapplication.ui.CelsiusSymbol;
 import com.example.myapplication.ui.Data;
-import com.google.android.gms.common.util.Strings;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -58,10 +57,10 @@ public class WeatherActivity extends AppCompatActivity {
         humidityView.setText("Humidity: "+ (data.getHumidity()) +"%");
 
         TextView tempmaxView = findViewById(R.id.tempmax);
-        tempmaxView.setText(String.valueOf(data.getTempMin()));
+        tempmaxView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMax()));
 
         TextView tempminView = findViewById(R.id.tempmin);
-        tempminView.setText(String.valueOf(data.getTempMin()));
+        tempminView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMin()));
 
 
 

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         //showTemperature(temp, viewid);
         TextView textView = findViewById(viewid);
-        textView.setText(CelsiusSymbol.toDisplayTemperatur(temp));
+        textView.setText(CelsiusSymbol.toDisplayTemperature(temp));
     }
 
     
