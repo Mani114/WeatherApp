@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,8 @@
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+        >
 
         <TextView
             android:id="@+id/city_name"
@@ -23,11 +25,24 @@
 
         </TextView>
 
+
+        <TextView
+            android:id="@+id/last_updated_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="last_updated_time"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            >
+        </TextView>
+
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/data"
+            tools:text="clouds"
             android:textStyle="normal"
             android:layout_margin="5dp"
             android:textSize="25sp"
@@ -39,7 +54,7 @@
             android:id="@+id/humidity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/data"
+            tools:text="Humidiity: 50%"
             android:textStyle="normal"
             android:layout_margin="5dp"
             android:textSize="25sp"
@@ -50,7 +65,7 @@
             android:id="@+id/tempmax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/data"
+            tools:text="5 C"
             android:textStyle="normal"
             android:layout_margin="5dp"
             android:textSize="25sp"
@@ -61,14 +76,27 @@
             android:id="@+id/tempmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/data"
+            tools:text="1"
             android:textStyle="normal"
             android:layout_margin="5dp"
             android:textSize="25sp"
             android:gravity="center">
         </TextView>
 
-
+        <TextView
+            android:id="@+id/Network_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/network_connection_is_not_available"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="invisible"/>
 
 
     </LinearLayout>

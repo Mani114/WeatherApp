@@ -2,9 +2,12 @@ package com.example.myapplication.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherProvider;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -92,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void getCurrentData(final String city, final int viewid) {
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
@@ -100,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResult(final int temperature) {
                 showTemperature(temperature, viewid);
               //  showHumidity(humidity, viewid);
+            }
+
+            @Override
+            public void onFailure() {
+
+                    Toast.makeText(MainActivity.this, "Network connection is not available", Toast.LENGTH_SHORT).show();
+
             }
 
 

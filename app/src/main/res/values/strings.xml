@@ -10,7 +10,9 @@
     <string name="New_York">New York</string>
     <string name="Beijing">Beijing</string>
     <string name="WeatherActivity">WeatherActivity</string>
-    <string name="data">data</string>
     <string name="city">city</string>
     <string name="cityname">cityname</string>
+    <string name="network_connection_is_not_available">Network connection is not available :(</string>
+    <color name="red">#ffff0000</color>
+    <color name="green">#ff00ff00</color>
 </resources>

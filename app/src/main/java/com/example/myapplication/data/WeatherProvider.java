@@ -7,18 +7,25 @@ public interface WeatherProvider {
 
     interface TemperatureCallback {
 
-         void onResult(int temperature);
+        void onResult(int temperature);
 
-     }
-     interface DataCallback {
+        void onFailure();
 
-          void onData(Data data);
 
-     }
+    }
 
-     void getCurrentTemperature (String city, TemperatureCallback callBack);
+    interface DataCallback {
 
-     void getData (String city, DataCallback callback);
+        void onData(Data data);
+
+        void onFail();
+
+    }
+
+
+    void getCurrentTemperature(String city, TemperatureCallback callBack);
+
+    void getData(String city, DataCallback callback);
 
 
 }

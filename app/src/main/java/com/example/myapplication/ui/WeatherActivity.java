@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
-import com.example.myapplication.ui.CelsiusSymbol;
-import com.example.myapplication.ui.Data;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static android.view.View.VISIBLE;
+
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -22,29 +28,39 @@ public class WeatherActivity extends AppCompatActivity {
 
         String cityname = getIntent().getStringExtra("City");
 
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+  //      String format = simpleDateFormat.format(new Date());
+    //    Log.d("WeatherActivity", "Current Timestamp: " + format);
+
+        //String time = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss'Z'");
+
         getData(cityname);
         showCity(cityname);
+      //showTime(simpleDateFormat);
 
-        //getData(cityname,R.id.city_name);
 
     }
 
-        private void getData (final String city){
+    private void getData(final String city) {
 
-            WeatherProvider weatherProvider = new WeatherProviderImpl();
-            weatherProvider.getData(city, new WeatherProvider.DataCallback() {
-                @Override
-                public void onData(final Data data) {
-                    showData(data);
+        WeatherProvider weatherProvider = new WeatherProviderImpl();
+        weatherProvider.getData(city, new WeatherProvider.DataCallback() {
+            @Override
+            public void onData(final Data data) {
+                showData(data);
+                showTime();
 
+            }
 
+            @Override
+            public void onFail() {
 
+                findViewById(R.id.Network_connection).setVisibility(VISIBLE);
 
-                    //showHumidity(humidity, viewid);
-                }
+            }
 
-            });
-        }
+        });
+    }
 
 
     @SuppressLint("SetTextI18n")
@@ -53,9 +69,9 @@ public class WeatherActivity extends AppCompatActivity {
         TextView descriptionView = findViewById(R.id.description);
         descriptionView.setText(data.getDescription());
 
-        //showTemperature(temp, viewid);
+
         TextView humidityView = findViewById(R.id.humidity);
-        humidityView.setText("Humidity: "+ (data.getHumidity()) +"%");
+        humidityView.setText("Humidity: " + (data.getHumidity()) + "%");
 
         TextView tempmaxView = findViewById(R.id.tempmax);
         tempmaxView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMax()));
@@ -64,23 +80,41 @@ public class WeatherActivity extends AppCompatActivity {
         tempminView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMin()));
 
 
-
-
-
-       // textView.setText(data.getHumidity());
-        //textView.setText((int) data.getTempMax());
-        //textView.setText((int) data.getTempMin());
-
-       // TextView textView1 = findViewById(viewid);
-        //textView1.setText(data.getHumidity());
-
     }
 
-    private void showCity (String cityname){
+    private void showCity(String cityname) {
 
         TextView textView = findViewById(R.id.city_name);
         textView.setText(cityname);
     }
+
+    @SuppressLint("SetTextI18n")
+    private void showTime(){
+
+        TextView lastupdated = findViewById((R.id.last_updated_time));
+        lastupdated.setText("Last Updated: "+  getDateNow());
+     //   lastupdated.setText(String.format("Last Updated: ",  getDateNow()));
+
+
+    }
+  /*
+    public static String unixTimeStampToDateTime ( double unixTimeStamp) {
+       DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+       Date date = new Date();
+       date.setTime((long)unixTimeStamp * 1000);
+       return dateFormat.format(date);
+    }
+   */
+    public static String getDateNow(){
+
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+
+
+
+    }
+
 
 
 }
