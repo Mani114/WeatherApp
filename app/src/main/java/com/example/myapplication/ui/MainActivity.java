@@ -1,9 +1,6 @@
 package com.example.myapplication.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void launchweatheractivity(String city) {
+    public void launchWeatherActivity(String city) {
 
         Intent intent = new Intent(this, WeatherActivity.class);
         intent.putExtra("City", city);
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchweatheractivity("Tehran");
+                launchWeatherActivity("Tehran");
 
                 // getCurrentData("Tehran", R.id.Tehran);
                 // description on a new page
@@ -45,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Stockholm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-               launchweatheractivity("Stockholm");
+               launchWeatherActivity("Stockholm");
 
                 // description on a new page
 
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Milan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchweatheractivity("Milan");
+                launchWeatherActivity("Milan");
 
 
 
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.New_York).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchweatheractivity("New York");
+                launchWeatherActivity("New York");
 
 
             }
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Beijing).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchweatheractivity("Beijing");
+                launchWeatherActivity("Beijing");
 
 
             }
@@ -97,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void getCurrentData(final String city, final int viewid) {
+    private void getCurrentData(final String city, final int viewId) {
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
             public void onResult(final int temperature) {
-                showTemperature(temperature, viewid);
-              //  showHumidity(humidity, viewid);
+                showTemperature(temperature, viewId);
+              //  showHumidity(humidity, viewId);
             }
 
             @Override
@@ -114,23 +111,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
         });
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private void showTemperature(int temp, int viewid ) {
+    private void showTemperature(int temp, int viewId ) {
 
-        //showTemperature(temp, viewid);
-        TextView textView = findViewById(viewid);
+        //showTemperature(temp, viewId);
+        TextView textView = findViewById(viewId);
         textView.setText(CelsiusSymbol.toDisplayTemperature(temp));
     }
 
     
 /*
-    private void showHumidity (int humidity, viewid){
-        TextView textView = findViewById(viewid);
+    private void showHumidity (int humidity, viewId){
+        TextView textView = findViewById(viewId);
         textView.setText((humidity) + "˚");
 
 

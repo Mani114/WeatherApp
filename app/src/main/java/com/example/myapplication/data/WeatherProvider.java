@@ -11,7 +11,6 @@ public interface WeatherProvider {
 
         void onFailure();
 
-
     }
 
     interface DataCallback {

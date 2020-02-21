@@ -13,6 +13,9 @@
     <string name="city">city</string>
     <string name="cityname">cityname</string>
     <string name="network_connection_is_not_available">Network connection is not available :(</string>
+    <string name="cityName">cityName</string>
+    <string name="WeatherIcon">WeatherIcon</string>
     <color name="red">#ffff0000</color>
     <color name="green">#ff00ff00</color>
+
 </resources>
