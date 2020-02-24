@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_Container"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/settings"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:textSize="36sp"
+        android:gravity="center">
+
+    </TextView>
+
+    <CheckBox
+        android:id="@+id/fahrenheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fahrenheit">
+
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/kelvin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kelvin">
+
+    </CheckBox>
+
+
+
+</LinearLayout>

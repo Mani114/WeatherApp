@@ -2,6 +2,8 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,8 +12,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +27,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void launchSettingsActivity( ) {
+
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
         findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
@@ -78,18 +91,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(final View v) {
+
+
+    public boolean onCreateOptionsMenu (Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+      //  return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
                 getCurrentData("Tehran", R.id.Tehran_current_temperature);
                 getCurrentData("Stockholm", R.id.Stockholm_current_temperature);
                 getCurrentData("Milan", R.id.Milan_current_temperature);
                 getCurrentData("New York", R.id.New_York_current_temperature);
                 getCurrentData("Beijing", R.id.Beijing_current_temperature);
+                break;
 
-            }
-        });
+            case R.id.action_settings:
+                Intent intent =  new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+
+                break;
+
+
+           // default:
+            //return super.onOptionsItemSelected(item);
+
+        }
+        return true;
     }
 
 

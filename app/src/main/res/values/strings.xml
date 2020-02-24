@@ -15,7 +15,26 @@
     <string name="network_connection_is_not_available">Network connection is not available :(</string>
     <string name="cityName">cityName</string>
     <string name="WeatherIcon">WeatherIcon</string>
+    <string name="refresh">Refresh</string>
     <color name="red">#ffff0000</color>
     <color name="green">#ff00ff00</color>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="Settings">Settings</string>
+    <string name="settings">Settings</string>
+
 
 </resources>
