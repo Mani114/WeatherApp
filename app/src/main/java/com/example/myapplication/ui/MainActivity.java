@@ -27,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void launchSettingsActivity( ) {
-
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     public boolean onCreateOptionsMenu (Menu menu){
 
