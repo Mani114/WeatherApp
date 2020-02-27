@@ -9,4 +9,17 @@ class TemperatureConverter {
 
         }
 
+        static int getKelvin(double temp){
+
+            return (int) temp;
+        }
+
+
+        static int getFahrenheit(double temp) {
+
+            return (int) temp;   //convert to fahrenhit
+        }
+
+
+
 }
