@@ -15,16 +15,15 @@ import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    static final String tempKey = "Temperature_metric";
-    static final String windKey = "Wind";
-    SharedPreferences pref = getApplicationContext().getSharedPreferences("myPref", 0);
-
-
+    private static final String TEMP_KEY = "Temperature_metric";
+    private static final String WIND_KEY = "Wind";
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+        pref = getApplicationContext().getSharedPreferences("myPref", 0);
 
         final CheckBox checkBoxFahrenheit = findViewById(R.id.fahrenheit);
         checkBoxFahrenheit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -32,28 +31,29 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
 
                 Log.d("onCheckedChanged", String.valueOf(isChecked));
-                saveData(tempKey, isChecked);
+                saveData(TEMP_KEY, isChecked);
 
             }
         });
 
-        checkBoxFahrenheit.setChecked(loadData(tempKey));
+        checkBoxFahrenheit.setChecked(loadData(TEMP_KEY));
 
         final CheckBox checkBoxWind = findViewById(R.id.wind);
         checkBoxWind.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 Log.d("onCheckedChanged", String.valueOf(isChecked));
-                saveData(windKey, isChecked);
+                saveData(WIND_KEY, isChecked);
             }
 
         });
 
-        checkBoxWind.setChecked(loadData(windKey));
+        checkBoxWind.setChecked(loadData(WIND_KEY));
 
     }
 
     private void saveData(String key, boolean b) {
+
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean(key, b);
         editor.apply();
