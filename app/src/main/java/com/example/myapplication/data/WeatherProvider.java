@@ -4,10 +4,9 @@ import com.example.myapplication.ui.Data;
 
 public interface WeatherProvider {
 
-
     interface TemperatureCallback {
 
-        void onResult(int temperature);
+        void onResult(double temperature);
 
         void onFailure();
 
@@ -19,15 +18,11 @@ public interface WeatherProvider {
 
         void onFail();
 
-
-
     }
 
+    void getCurrentTemperature(String city, TemperatureCallback callBack, boolean withDelay);
 
-    void getCurrentTemperature(String city, TemperatureCallback callBack);
-
-    void getData(String city, DataCallback callback);
-
+    void getData(String city, DataCallback callback, boolean withDelay);
 
 }
 

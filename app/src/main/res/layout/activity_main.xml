@@ -42,15 +42,31 @@
 
         </TextView>
 
+
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic_Tehran"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
         <TextView
             android:id="@+id/Tehran_current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current temperature"
             android:textStyle="italic"
             android:layout_margin="5dp"
             android:textSize="15sp">
         </TextView>
+
 
         <TextView
             android:id="@+id/Stockholm"
@@ -66,11 +82,26 @@
 
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic_Stockholm"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+
+
+            />
+
         <TextView
             android:id="@+id/Stockholm_current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current temperature"
             android:textStyle="italic"
             android:layout_margin="5dp"
             android:textSize="15sp">
@@ -90,11 +121,26 @@
 
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic_Milan"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+
+
+            />
+
         <TextView
             android:id="@+id/Milan_current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current temperature"
             android:textStyle="italic"
             android:layout_margin="5dp"
             android:textSize="15sp">
@@ -114,11 +160,26 @@
 
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic_New_York"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+
+
+            />
+
         <TextView
             android:id="@+id/New_York_current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current temperature"
             android:textStyle="italic"
             android:layout_margin="5dp"
             android:textSize="15sp">
@@ -138,11 +199,26 @@
 
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic_Beijing"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="start"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+
+
+            />
+
         <TextView
             android:id="@+id/Beijing_current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current temperature"
             android:textStyle="italic"
             android:layout_margin="5dp"
             android:textSize="15sp">

@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WeatherProviderImpl implements WeatherProvider {
 
     @Override
-    public void getCurrentTemperature(final String city, final TemperatureCallback callBack) {
+    public void getCurrentTemperature(final String city, final TemperatureCallback callBack, final boolean withDelay) {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -39,10 +39,22 @@ public class WeatherProviderImpl implements WeatherProvider {
             public void onResponse(@NotNull final Call<WeatherResponse> call, @NotNull final Response<WeatherResponse> response) {
 
                 assert response.body() != null;
-                double temp = response.body().getMain().getTemp();
-                final int celsiusTemp = TemperatureConverter.getCelsius(temp);
+                final double temp = response.body().getMain().getTemp();
 
-                callBack.onResult(celsiusTemp);
+                if (withDelay){
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onResult(temp);
+
+                        }
+                    }, 4000);
+
+                } else {
+                    callBack.onResult(temp);
+
+                }
 
             }
 
@@ -56,7 +68,7 @@ public class WeatherProviderImpl implements WeatherProvider {
     }
 
     @Override
-    public void getData(final String city, final DataCallback callback) {
+    public void getData(final String city, final DataCallback callback, final boolean withDelay) {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         // interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -78,27 +90,30 @@ public class WeatherProviderImpl implements WeatherProvider {
                 assert response.body() != null;
                 double minTemp = response.body().getMain().getTempMin();
                 double maxTemp = response.body().getMain().getTempMax();
-                int celsiusMinTemp = TemperatureConverter.getCelsius(minTemp);
-                int celsiusMaxTemp = TemperatureConverter.getCelsius(maxTemp);
 
 
                 final Data data = new Data(
                         response.body().getWeather().get(0).getDescription(),
                         response.body().getMain().getHumidity(),
-                        celsiusMaxTemp,
-                        celsiusMinTemp,
+                        maxTemp,
+                        minTemp,
+                        response.body().getWind().getSpeed(),
                         "http://openweathermap.org/img/w/" + response.body().getWeather().get(0).getIcon() + ".png"
 
                 );
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onData(data);
 
-                    }
-                }, 4000);
+                if (withDelay) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onData(data);
 
+                        }
+                    }, 4000);
+                } else {
+                    callback.onData(data);
+                }
 
             }
 
@@ -107,12 +122,10 @@ public class WeatherProviderImpl implements WeatherProvider {
                 Log.d("Weather", "Failure");
                 callback.onFail();
 
-
             }
 
         });
 
     }
-
 
 }

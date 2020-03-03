@@ -23,15 +23,22 @@
         android:id="@+id/fahrenheit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fahrenheit">
-
+        android:text="@string/fahrenheit">
     </CheckBox>
 
     <CheckBox
         android:id="@+id/wind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wind">
+        android:text="Wind speed (mph)">
+
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/delay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delay">
 
     </CheckBox>
 

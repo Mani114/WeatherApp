@@ -1,25 +1,17 @@
 package com.example.myapplication.data;
 
 
-class TemperatureConverter {
+public class TemperatureConverter {
 
-        static int getCelsius(double temp) {
+    public static String getCelsius(double temp) {
+        int celsius = (int) (temp - 273.16);
+        return (celsius + " ˚C");
+    }
 
-            return (int) (temp - 273.16);
-
-        }
-
-        static int getKelvin(double temp){
-
-            return (int) temp;
-        }
-
-
-        static int getFahrenheit(double temp) {
-
-            return (int) temp;   //convert to fahrenhit
-        }
-
-
-
+    public static String getFahrenheit(double temp) {
+        int fahrenheit = (int) (temp * 9 / 5 - 459.67);
+        return fahrenheit + " ˚F";
+    }
 }
+
+

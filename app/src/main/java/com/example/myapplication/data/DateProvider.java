@@ -8,10 +8,8 @@ import java.util.Locale;
 public class DateProvider {
 
     public static String getDateNow() {
-
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
-
     }
 }

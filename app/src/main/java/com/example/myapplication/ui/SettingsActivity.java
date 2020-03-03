@@ -1,29 +1,26 @@
 package com.example.myapplication.ui;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
+
 
 import com.example.myapplication.R;
+import com.example.myapplication.data.SettingsProvider;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceFragmentCompat;
+
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String TEMP_KEY = "Temperature_metric";
-    private static final String WIND_KEY = "Wind";
-    private SharedPreferences pref;
+    public SettingsProvider settingsProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-        pref = getApplicationContext().getSharedPreferences("myPref", 0);
+        settingsProvider = new SettingsProvider(getApplicationContext());
 
         final CheckBox checkBoxFahrenheit = findViewById(R.id.fahrenheit);
         checkBoxFahrenheit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -31,39 +28,37 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
 
                 Log.d("onCheckedChanged", String.valueOf(isChecked));
-                saveData(TEMP_KEY, isChecked);
-
+                settingsProvider.saveTemp(isChecked);
             }
         });
 
-        checkBoxFahrenheit.setChecked(loadData(TEMP_KEY));
+        checkBoxFahrenheit.setChecked(settingsProvider.getTemperatureMetric());
 
         final CheckBox checkBoxWind = findViewById(R.id.wind);
         checkBoxWind.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 Log.d("onCheckedChanged", String.valueOf(isChecked));
-                saveData(WIND_KEY, isChecked);
+                settingsProvider.saveWind(isChecked);
             }
 
         });
 
-        checkBoxWind.setChecked(loadData(WIND_KEY));
+        checkBoxWind.setChecked(settingsProvider.getWind());
+
+        final CheckBox checkBoxDelay = findViewById(R.id.delay);
+        checkBoxDelay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                Log.d("onCheckedChanged", String.valueOf(isChecked));
+                settingsProvider.saveDelay(isChecked);
+            }
+        });
+
+        checkBoxDelay.setChecked((settingsProvider.withDelay()));
 
     }
-
-    private void saveData(String key, boolean b) {
-
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean(key, b);
-        editor.apply();
-    }
-
-    private boolean loadData(String key) {
-        return pref.getBoolean(key, false);
-
-    }
-
 
 
 }

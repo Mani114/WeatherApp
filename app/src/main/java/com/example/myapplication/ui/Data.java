@@ -1,33 +1,36 @@
 package com.example.myapplication.ui;
 
-
 public class Data {
-
-
     private String description;
     private int    humidity;
-    private int    tempMax;
-    private int    tempMin;
+    private double    tempMax;
+    private double    tempMin;
     private String imageUrl;
+    private double   speed;
 
-
-    public Data(final String description, final int humidity, final int tempMax, final int tempMin, final String imageUrl) {
+    public Data(final String description, final int humidity, final double tempMax, final double tempMin, final double speed, final String imageUrl) {
         this.description = description;
         this.humidity = humidity;
         this.tempMax = tempMax;
         this.tempMin = tempMin;
+        this.speed = speed;
         this.imageUrl = imageUrl;
 
     }
+
     String getImageUrl() {
         return imageUrl;
     }
 
-    int getTempMin() {
+    double getSpeed() {
+        return speed;
+    }
+
+    double getTempMin() {
         return tempMin;
     }
 
-    int getTempMax() {
+    double getTempMax() {
         return tempMax;
     }
 
@@ -39,6 +42,5 @@ public class Data {
 
         return description;
     }
-
 
 }

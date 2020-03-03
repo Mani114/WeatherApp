@@ -12,16 +12,22 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.DateProvider;
+import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
+import com.example.myapplication.data.WindConverter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 import static android.view.View.VISIBLE;
 
 
 public class WeatherActivity extends AppCompatActivity {
 
+    public  SettingsProvider settingsProvider;
     private ProgressBar mProgressBar;
 
     @Override
@@ -29,18 +35,13 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         getIntent().getStringExtra("City");
-
+        settingsProvider = new SettingsProvider(getApplicationContext());
         mProgressBar = findViewById(R.id.progressBar_cyclic);
         showProgressBar(true);
-
-
-
         String cityName = getIntent().getStringExtra("City");
-
 
         getData(cityName);
         showCity(cityName);
-
     }
 
     private void getData(final String city) {
@@ -57,13 +58,13 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onFail() {
-
                 findViewById(R.id.Network_connection).setVisibility(VISIBLE);
                 showProgressBar(false);
 
             }
 
-        });
+        }, settingsProvider.withDelay() );
+
     }
 
     private void showData(Data data) {
@@ -72,13 +73,28 @@ public class WeatherActivity extends AppCompatActivity {
         descriptionView.setText(data.getDescription());
 
         TextView humidityView = findViewById(R.id.humidity);
-        humidityView.setText((data.getHumidity()) + "%");
+        humidityView.setText((data.getHumidity() + "%"));
 
         TextView tempMaxView = findViewById(R.id.tempMax);
-        tempMaxView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMax()));
+        if (settingsProvider.getTemperatureMetric()) {
+            tempMaxView.setText(TemperatureConverter.getFahrenheit(data.getTempMin()));
+        } else {
+            tempMaxView.setText(TemperatureConverter.getCelsius(data.getTempMax()));
+        }
 
         TextView tempMinView = findViewById(R.id.tempMin);
-        tempMinView.setText(CelsiusSymbol.toDisplayTemperature(data.getTempMin()));
+        if (settingsProvider.getTemperatureMetric()) {
+            tempMinView.setText(TemperatureConverter.getFahrenheit(data.getTempMin()));
+        } else {
+            tempMinView.setText(TemperatureConverter.getCelsius(data.getTempMin()));
+        }
+
+        TextView windView = findViewById(R.id.wind);
+        if (settingsProvider.getWind()) {
+            windView.setText((WindConverter.getSpeed(data.getSpeed()) + ""));
+        } else {
+            windView.setText((data.getSpeed() + " m/s"));
+        }
 
 
         Log.d("ImageUrl", data.getImageUrl());
@@ -92,7 +108,7 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onError(final Exception e) {
-                Log.d("Failed", e.getMessage());
+                Log.d("Failed", Objects.requireNonNull(e.getMessage()));
 
             }
         });
@@ -109,13 +125,10 @@ public class WeatherActivity extends AppCompatActivity {
 
         TextView lastUpdated = findViewById((R.id.last_updated_time));
         lastUpdated.setText("Last Updated: " + DateProvider.getDateNow());
-        //   lastUpdated.setText(String.format("Last Updated: ",  getDateNow()));
-
     }
 
     private void showProgressBar(boolean b) {
 
-        //mProgressBar.setVisibility(View.INVISIBLE);
         if (b) {
             mProgressBar.setVisibility(View.VISIBLE);
         } else {
