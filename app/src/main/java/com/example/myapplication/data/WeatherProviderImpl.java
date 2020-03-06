@@ -53,7 +53,6 @@ public class WeatherProviderImpl implements WeatherProvider {
 
                 } else {
                     callBack.onResult(temp);
-
                 }
 
             }
@@ -99,9 +98,7 @@ public class WeatherProviderImpl implements WeatherProvider {
                         minTemp,
                         response.body().getWind().getSpeed(),
                         "http://openweathermap.org/img/w/" + response.body().getWeather().get(0).getIcon() + ".png"
-
                 );
-
 
                 if (withDelay) {
                     new Handler().postDelayed(new Runnable() {

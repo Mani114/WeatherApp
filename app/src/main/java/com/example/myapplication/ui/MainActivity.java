@@ -25,7 +25,7 @@ import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public  SettingsProvider settingsProvider;
+    public SettingsProvider settingsProvider;
 
     public void launchWeatherActivity(String city) {
         Intent intent = new Intent(this, WeatherActivity.class);
@@ -37,44 +37,61 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         settingsProvider = new SettingsProvider(getApplicationContext());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.Tehran).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.view1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 launchWeatherActivity("Tehran");
             }
         });
 
-        findViewById(R.id.Stockholm).setOnClickListener(new View.OnClickListener() {
+        CityTemperatureView view1 = findViewById(R.id.view1);
+        view1.setTitle("Tehran");
+
+        findViewById(R.id.view2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 launchWeatherActivity("Stockholm");
             }
         });
 
-        findViewById(R.id.Milan).setOnClickListener(new View.OnClickListener() {
+        CityTemperatureView view2 = findViewById(R.id.view2);
+        view2.setTitle("Stockholm");
+
+        findViewById(R.id.view3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 launchWeatherActivity("Milan");
             }
         });
+        CityTemperatureView view3 = findViewById(R.id.view3);
+        view3.setTitle("Milan");
 
-        findViewById(R.id.New_York).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.view4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 launchWeatherActivity("New York");
             }
         });
 
-        findViewById(R.id.Beijing).setOnClickListener(new View.OnClickListener() {
+        CityTemperatureView view4 = findViewById(R.id.view4);
+        view4.setTitle("New York");
+
+        findViewById(R.id.view5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 launchWeatherActivity("Beijing");
             }
         });
+
+        CityTemperatureView view5 = findViewById(R.id.view5);
+        view5.setTitle("Beijing");
 
     }
 
@@ -87,19 +104,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                getCurrentData("Tehran", R.id.Tehran_current_temperature, R.id.progressBar_cyclic_Tehran);
-                getCurrentData("Stockholm", R.id.Stockholm_current_temperature, R.id.progressBar_cyclic_Stockholm);
-                getCurrentData("Milan", R.id.Milan_current_temperature, R.id.progressBar_cyclic_Milan);
-                getCurrentData("New York", R.id.New_York_current_temperature, R.id.progressBar_cyclic_New_York);
-                getCurrentData("Beijing", R.id.Beijing_current_temperature, R.id.progressBar_cyclic_Beijing);
+                getCurrentDataNew("Tehran", R.id.view1);
+                getCurrentDataNew("Stockholm", R.id.view2);
+                getCurrentDataNew("Milan", R.id.view3);
+                getCurrentDataNew("New York", R.id.view4);
+                getCurrentDataNew("Beijing", R.id.view5);
+
+                //getCurrentData("Milan", R.id.Milan_current_temperature, R.id.progressBar_cyclic_Milan);
+                //getCurrentData("Tehran", R.id.current_temperature, R.id.progressBar_cyclic);
+                //getCurrentData("Stockholm", R.id.current_temperature, R.id.progressBar_cyclic);
+                //getCurrentData("New York", R.id.New_York_current_temperature, R.id.progressBar_cyclic_New_York);
+                //getCurrentData("Beijing", R.id.Beijing_current_temperature, R.id.progressBar_cyclic_Beijing);
                 break;
+
 
             case R.id.action_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-
                 break;
-
         }
         return true;
     }
@@ -112,15 +134,43 @@ public class MainActivity extends AppCompatActivity {
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
             public void onResult(final double temperature) {
-
                 onWeatherResult(temperature, viewId, progressBarId);
 
             }
 
             @Override
             public void onFailure() {
-
                 onWeatherFail(viewId, progressBarId);
+
+            }
+
+        }, settingsProvider.withDelay());
+
+    }
+
+    private void getCurrentDataNew(final String city, final int viewId) {
+        final CityTemperatureView customView = findViewById(viewId);
+        customView.showProgressbar(true);
+
+
+        WeatherProvider weatherProvider = new WeatherProviderImpl();
+        weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
+            @Override
+            public void onResult(final double temperature) {
+                // onWeatherResult(temperature, viewId, progressBarId);
+                customView.showProgressbar(false);
+                if (settingsProvider.getTemperatureMetric()) {
+                    customView.setSubtitle(TemperatureConverter.getFahrenheit(temperature));
+                } else {
+                    customView.setSubtitle(TemperatureConverter.getCelsius(temperature));
+                }
+
+            }
+
+            @Override
+            public void onFailure() {
+                //   onWeatherFail(viewId, progressBarId);
+                customView.showProgressbar(false);
 
             }
 
@@ -143,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void hideTextView(int v, int textViewId) {
+    private void changeTextViewVisibility(int v, int textViewId) {
         TextView hideText = findViewById(textViewId);
         hideText.setVisibility(v);
     }
@@ -151,18 +201,18 @@ public class MainActivity extends AppCompatActivity {
     private void onWeatherResult(double temperature, int viewId, int progressBarId) {
         showTemperature((int) temperature, viewId);
         showProgressBar(GONE, progressBarId);
-        hideTextView(VISIBLE, viewId);
+        changeTextViewVisibility(VISIBLE, viewId);
     }
 
     private void onLoadingStarted(int viewId, int progressBarId) {
         showProgressBar(VISIBLE, progressBarId);
-        hideTextView(GONE, viewId);
+        changeTextViewVisibility(GONE, viewId);
     }
 
     private void onWeatherFail(int viewId, int progressBarId) {
         Toast.makeText(MainActivity.this, "Network connection is not available", Toast.LENGTH_SHORT).show();
         showProgressBar(GONE, progressBarId);
-        hideTextView(VISIBLE, viewId);
+        changeTextViewVisibility(VISIBLE, viewId);
     }
 
 }

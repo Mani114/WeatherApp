@@ -39,18 +39,14 @@ public class SettingsProvider {
     }
 
     public boolean getTemperatureMetric() {
-
         return pref.getBoolean(TEMP_KEY, false);
     }
 
     public boolean getWind() {
-
         return pref.getBoolean(WIND_KEY, false);
-
     }
 
     public boolean withDelay (){
-
         return pref.getBoolean(DELAY_KEY, false);
     }
 

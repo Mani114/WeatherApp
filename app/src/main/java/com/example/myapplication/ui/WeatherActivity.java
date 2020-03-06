@@ -3,6 +3,7 @@ package com.example.myapplication.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ import static android.view.View.VISIBLE;
 public class WeatherActivity extends AppCompatActivity {
 
     public  SettingsProvider settingsProvider;
-    private ProgressBar mProgressBar;
+    private ProgressBar      mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,30 +64,31 @@ public class WeatherActivity extends AppCompatActivity {
 
             }
 
-        }, settingsProvider.withDelay() );
+        }, settingsProvider.withDelay());
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void showData(Data data) {
 
         TextView descriptionView = findViewById(R.id.description);
         descriptionView.setText(data.getDescription());
 
         TextView humidityView = findViewById(R.id.humidity);
-        humidityView.setText((data.getHumidity() + "%"));
+        humidityView.setText("Humidity: " + (data.getHumidity() + "%"));
 
         TextView tempMaxView = findViewById(R.id.tempMax);
         if (settingsProvider.getTemperatureMetric()) {
-            tempMaxView.setText(TemperatureConverter.getFahrenheit(data.getTempMin()));
+            tempMaxView.setText("MaxTemp: " + TemperatureConverter.getFahrenheit(data.getTempMin()));
         } else {
-            tempMaxView.setText(TemperatureConverter.getCelsius(data.getTempMax()));
+            tempMaxView.setText("MaxTemp: " + TemperatureConverter.getCelsius(data.getTempMax()));
         }
 
         TextView tempMinView = findViewById(R.id.tempMin);
         if (settingsProvider.getTemperatureMetric()) {
-            tempMinView.setText(TemperatureConverter.getFahrenheit(data.getTempMin()));
+            tempMinView.setText("MinTemp: " + TemperatureConverter.getFahrenheit(data.getTempMin()));
         } else {
-            tempMinView.setText(TemperatureConverter.getCelsius(data.getTempMin()));
+            tempMinView.setText("MinTemp: " + TemperatureConverter.getCelsius(data.getTempMin()));
         }
 
         TextView windView = findViewById(R.id.wind);

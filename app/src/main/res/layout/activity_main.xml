@@ -4,239 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity">
 
 
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@android:color/white"
             android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleTextAppearance="@style/Toolbar.TitleText"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
+            app:titleTextColor="@android:color/white">
 
         </androidx.appcompat.widget.Toolbar>
 
 
-        <TextView
-            android:id="@+id/Tehran"
+        <com.example.myapplication.ui.CityTemperatureView
+
+            android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Tehran"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:onClick="launchWeatherActivity"
-            tools:ignore="OnClick">
-
-
-        </TextView>
-
-
-        <ProgressBar
-            android:id="@+id/progressBar_cyclic_Tehran"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
             />
 
-        <TextView
-            android:id="@+id/Tehran_current_temperature"
+        <com.example.myapplication.ui.CityTemperatureView
+
+            android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_margin="5dp"
-            android:textSize="15sp">
-        </TextView>
-
-
-        <TextView
-            android:id="@+id/Stockholm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Stockholm"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:onClick="launchWeatherActivity"
-            tools:ignore="OnClick">
-
-        </TextView>
-
-        <ProgressBar
-            android:id="@+id/progressBar_cyclic_Stockholm"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-
 
             />
 
-        <TextView
-            android:id="@+id/Stockholm_current_temperature"
+        <com.example.myapplication.ui.CityTemperatureView
+
+            android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_margin="5dp"
-            android:textSize="15sp">
-        </TextView>
-
-        <TextView
-            android:id="@+id/Milan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Milan"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:onClick="launchWeatherActivity"
-            tools:ignore="OnClick">
-
-        </TextView>
-
-        <ProgressBar
-            android:id="@+id/progressBar_cyclic_Milan"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-
 
             />
 
-        <TextView
-            android:id="@+id/Milan_current_temperature"
+        <com.example.myapplication.ui.CityTemperatureView
+
+            android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_margin="5dp"
-            android:textSize="15sp">
-        </TextView>
-
-        <TextView
-            android:id="@+id/New_York"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/New_York"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:onClick="launchWeatherActivity"
-            tools:ignore="OnClick">
-
-        </TextView>
-
-        <ProgressBar
-            android:id="@+id/progressBar_cyclic_New_York"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-
 
             />
 
-        <TextView
-            android:id="@+id/New_York_current_temperature"
+        <com.example.myapplication.ui.CityTemperatureView
+
+            android:id="@+id/view5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_margin="5dp"
-            android:textSize="15sp">
-        </TextView>
-
-        <TextView
-            android:id="@+id/Beijing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Beijing"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp"
-            android:onClick="launchWeatherActivity"
-            tools:ignore="OnClick">
-
-        </TextView>
-
-        <ProgressBar
-            android:id="@+id/progressBar_cyclic_Beijing"
-            android:layout_width="30dp"
-            android:layout_height="24dp"
-            android:layout_gravity="start"
-            android:minWidth="50dp"
-            android:minHeight="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-
 
             />
 
-        <TextView
-            android:id="@+id/Beijing_current_temperature"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_margin="5dp"
-            android:textSize="15sp">
-        </TextView>
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:textSize="16sp"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
