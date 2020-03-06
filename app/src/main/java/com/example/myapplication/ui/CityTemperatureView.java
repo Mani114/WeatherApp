@@ -52,13 +52,16 @@ public class CityTemperatureView extends FrameLayout {
 
     public void showProgressbar(boolean visible) {
         mProgressBar.setVisibility(visible ? View.VISIBLE : View.GONE);
-
+        mSubTitle.setVisibility(visible ? View.GONE : View.VISIBLE);
+/*
         if (visible) {
             mSubTitle.setVisibility(INVISIBLE);
         } else {
             mSubTitle.setVisibility(VISIBLE);
 
-        }
+       }
+
+        */
 
     }
 

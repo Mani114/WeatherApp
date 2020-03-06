@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+/*
     private void getCurrentData(final String city, final int viewId, final int progressBarId) {
         onLoadingStarted(viewId, progressBarId);
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         }, settingsProvider.withDelay());
 
     }
-
+*/
     private void getCurrentDataNew(final String city, final int viewId) {
         final CityTemperatureView customView = findViewById(viewId);
         customView.showProgressbar(true);
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }, settingsProvider.withDelay());
 
     }
-
+/*
     private void showProgressBar(int visibility, int progressViewBarId) {
         ProgressBar progressBarTextView = findViewById(progressViewBarId);
         progressBarTextView.setVisibility(visibility);
@@ -214,6 +214,6 @@ public class MainActivity extends AppCompatActivity {
         showProgressBar(GONE, progressBarId);
         changeTextViewVisibility(VISIBLE, viewId);
     }
-
+*/
 }
 
