@@ -18,18 +18,22 @@ import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 import com.example.myapplication.data.WindConverter;
+import com.example.myapplication.data.response.Weather;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
 import java.util.Objects;
 
 import static android.view.View.VISIBLE;
 
 
-public class WeatherActivity extends AppCompatActivity {
+
+public class WeatherActivity extends AppCompatActivity implements WeatherActivityView {
 
     public  SettingsProvider settingsProvider;
     private ProgressBar      mProgressBar;
+    private WeatherActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class WeatherActivity extends AppCompatActivity {
 
         getData(cityName);
         showCity(cityName);
+
+        presenter = new WeatherActivityPresenter(this, null);
     }
 
     private void getData(final String city) {
@@ -137,6 +143,17 @@ public class WeatherActivity extends AppCompatActivity {
             mProgressBar.setVisibility(View.INVISIBLE);
 
         }
+
+    }
+
+
+    @Override
+    public void displayWeather(final List<Weather> weatherList) {
+
+    }
+
+    @Override
+    public void displayNoWeather() {
 
     }
 
