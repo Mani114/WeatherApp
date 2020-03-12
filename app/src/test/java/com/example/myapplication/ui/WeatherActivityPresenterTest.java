@@ -1,6 +1,8 @@
 package com.example.myapplication.ui;
 
 import com.example.myapplication.WeatherRepository;
+import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.response.Weather;
 
 import org.junit.Assert;
@@ -18,10 +20,11 @@ public class WeatherActivityPresenterTest {
 
         // given (lets create initial conditions)
         WeatherActivityView view = new MockView();
-        WeatherRepository weatherRepository = new MockWeatherRepository(true);
+        WeatherProvider weatherProvider = new MockWeatherProvider(true);
+        // SettingsProvider settingsProvider = new MockSettingsProvider
 
         // when (the actions we want to trigger),presenter gets instance of view
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherRepository);
+        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null);
         presenter.loadWeather();
 
         // then (did it work or did it not work)
@@ -33,9 +36,9 @@ public class WeatherActivityPresenterTest {
     public void shouldHandleNoWeatherFound() {
 
         WeatherActivityView view = new MockView();
-        WeatherRepository weatherRepository = new MockWeatherRepository(false);
+        WeatherProvider weatherProvider = new MockWeatherProvider(false);
 
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherRepository);
+        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, (SettingsProvider) weatherProvider);
         presenter.loadWeather();
 
         Assert.assertEquals(true, ((MockView) view).displayWeatherWithNoWeatherCalled);
@@ -45,49 +48,87 @@ public class WeatherActivityPresenterTest {
 
     private class MockView implements WeatherActivityView {
 
+        public boolean displayWeatherWithNoWeatherCalled;
         boolean displayWeatherWithWeatherCalled;
-        boolean displayWeatherWithNoWeatherCalled;
 
 
         @Override
-        public void displayWeather(final List<Weather> weatherList) {
-
-            if (weatherList.size() == 3) {
-                displayWeatherWithWeatherCalled = true;
-            }
+        public void showDescription(final String description) {
 
         }
-
 
         @Override
-        public void displayNoWeather() {
-            displayWeatherWithNoWeatherCalled = true;
+        public void showHumidity(final String humidity) {
+
         }
 
+        @Override
+        public void showMaxTemp(final String maxTemp) {
 
+        }
+
+        @Override
+        public void showMinTemp(final String minTemp) {
+
+        }
+
+        @Override
+        public void showWind(final String wind) {
+
+        }
+
+        @Override
+        public void showProgressBar(final boolean b) {
+
+        }
+
+        @Override
+        public void showTime() {
+
+        }
+
+        @Override
+        public void showIcon(final Data data) {
+
+        }
     }
 
+    public class MockSettingsProvider implements WeatherProvider{
 
-    private class MockWeatherRepository implements WeatherRepository {
+        private boolean returnSomeSetting;
+
+        public MockSettingsProvider() {
+
+
+
+        }
+
+        @Override
+        public void getCurrentTemperature(final String city, final TemperatureCallback callBack, final boolean withDelay) {
+
+        }
+
+        @Override
+        public void getData(final String city, final DataCallback callback, final boolean withDelay) {
+
+        }
+    }
+
+    private class MockWeatherProvider implements WeatherProvider {
 
         private boolean returnSomeWeather;
 
-        public MockWeatherRepository(boolean returnSomeWeather) {
+        public MockWeatherProvider(boolean returnSomeWeather) {
             this.returnSomeWeather = returnSomeWeather;
         }
 
         @Override
-        public List<Weather> getWeather() {
+        public void getCurrentTemperature(final String city, final TemperatureCallback callBack, final boolean withDelay) {
 
-            if (returnSomeWeather) {
+        }
 
-                return Arrays.asList(new Weather("Varmt", "sss", 2, "sss"),
-                        new Weather("oks", "mskms", 3, "jsjs"),
-                        new Weather("skoaksa", "msmss", 4, "kdd"));
-            } else {
-                return Collections.emptyList();
-            }
-
+        @Override
+        public void getData(final String city, final DataCallback callback, final boolean withDelay) {
 
         }
     }

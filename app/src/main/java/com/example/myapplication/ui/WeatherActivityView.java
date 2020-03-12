@@ -6,10 +6,21 @@ import java.util.List;
 
 public interface WeatherActivityView {
 
-    void displayWeather (List<Weather> weatherList);
+    void showDescription(String description);
 
-    void displayNoWeather();
+    void showHumidity(String humidity);
 
+    void showMaxTemp(String maxTemp);
+
+    void showMinTemp(String minTemp);
+
+    void showWind(String wind);
+
+    void showProgressBar(boolean b);
+
+    void showTime();
+
+    void showIcon(Data data);
 
 
 }

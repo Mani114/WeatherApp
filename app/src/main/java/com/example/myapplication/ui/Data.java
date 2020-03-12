@@ -3,10 +3,10 @@ package com.example.myapplication.ui;
 public class Data {
     private String description;
     private int    humidity;
-    private double    tempMax;
-    private double    tempMin;
+    private double tempMax;
+    private double tempMin;
     private String imageUrl;
-    private double   speed;
+    private double speed;
 
     public Data(final String description, final int humidity, final double tempMax, final double tempMin, final double speed, final String imageUrl) {
         this.description = description;

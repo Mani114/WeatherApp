@@ -22,18 +22,20 @@ import com.example.myapplication.data.response.Weather;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import java.util.Objects;
 
 import static android.view.View.VISIBLE;
 
 
-
 public class WeatherActivity extends AppCompatActivity implements WeatherActivityView {
 
-    public  SettingsProvider settingsProvider;
-    private ProgressBar      mProgressBar;
-    private WeatherActivityPresenter presenter;
+    public  SettingsProvider         settingsProvider;
+    private ProgressBar              mProgressBar;
+    public  WeatherProvider          weatherProvider;
+    public  WeatherActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +43,21 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
         setContentView(R.layout.activity_weather);
         getIntent().getStringExtra("City");
         settingsProvider = new SettingsProvider(getApplicationContext());
+        weatherProvider = new WeatherProviderImpl();
         mProgressBar = findViewById(R.id.progressBar_cyclic);
         showProgressBar(true);
         String cityName = getIntent().getStringExtra("City");
 
-        getData(cityName);
+        // getData(cityName);
         showCity(cityName);
 
-        presenter = new WeatherActivityPresenter(this, null);
-    }
 
+        presenter = new WeatherActivityPresenter(this, weatherProvider, settingsProvider);
+        presenter.onCreate();
+
+
+    }
+/*
     private void getData(final String city) {
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
@@ -73,69 +80,28 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
         }, settingsProvider.withDelay());
 
     }
+*/
 
-    @SuppressLint("SetTextI18n")
-    private void showData(Data data) {
+    /*
+        @SuppressLint("SetTextI18n")
+        private void showData(Data data) {
 
-        TextView descriptionView = findViewById(R.id.description);
-        descriptionView.setText(data.getDescription());
-
-        TextView humidityView = findViewById(R.id.humidity);
-        humidityView.setText("Humidity: " + (data.getHumidity() + "%"));
-
-        TextView tempMaxView = findViewById(R.id.tempMax);
-        if (settingsProvider.getTemperatureMetric()) {
-            tempMaxView.setText("MaxTemp: " + TemperatureConverter.getFahrenheit(data.getTempMin()));
-        } else {
-            tempMaxView.setText("MaxTemp: " + TemperatureConverter.getCelsius(data.getTempMax()));
         }
-
-        TextView tempMinView = findViewById(R.id.tempMin);
-        if (settingsProvider.getTemperatureMetric()) {
-            tempMinView.setText("MinTemp: " + TemperatureConverter.getFahrenheit(data.getTempMin()));
-        } else {
-            tempMinView.setText("MinTemp: " + TemperatureConverter.getCelsius(data.getTempMin()));
-        }
-
-        TextView windView = findViewById(R.id.wind);
-        if (settingsProvider.getWind()) {
-            windView.setText((WindConverter.getSpeed(data.getSpeed()) + ""));
-        } else {
-            windView.setText((data.getSpeed() + " m/s"));
-        }
-
-
-        Log.d("ImageUrl", data.getImageUrl());
-
-        Picasso.get().load(data.getImageUrl()).into((ImageView) findViewById(R.id.Weather_icon), new Callback() {
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(final Exception e) {
-                Log.d("Failed", Objects.requireNonNull(e.getMessage()));
-
-            }
-        });
-
-    }
-
-    private void showCity(String cityName) {
+    */
+    public void showCity(String cityName) {
 
         TextView textView = findViewById(R.id.city_name);
         textView.setText(cityName);
     }
 
-    private void showTime() {
+    public void showTime() {
 
         TextView lastUpdated = findViewById((R.id.last_updated_time));
         lastUpdated.setText("Last Updated: " + DateProvider.getDateNow());
     }
 
-    private void showProgressBar(boolean b) {
+    @Override
+    public void showProgressBar(boolean b) {
 
         if (b) {
             mProgressBar.setVisibility(View.VISIBLE);
@@ -146,16 +112,48 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
 
     }
 
-
     @Override
-    public void displayWeather(final List<Weather> weatherList) {
+    public void showDescription(final String description) {
+
+        TextView descriptionView = findViewById(R.id.description);
+        descriptionView.setText(description);
 
     }
 
     @Override
-    public void displayNoWeather() {
+    public void showHumidity(final String humidity) {
+
+        TextView humidityView = findViewById(R.id.humidity);
+        humidityView.setText(humidity);
+    }
+
+    @Override
+    public void showMaxTemp(final String maxTemp) {
+
+        TextView tempMaxView = findViewById(R.id.tempMax);
+        tempMaxView.setText(maxTemp);
+
+    }
+
+    @Override
+    public void showMinTemp(final String minTemp) {
+
+        TextView tempMinView = findViewById(R.id.tempMin);
+        tempMinView.setText(minTemp);
+
+    }
+
+    @Override
+    public void showWind(final String wind) {
+        TextView windView = findViewById(R.id.wind);
+        windView.setText(wind);
+    }
+
+    @Override
+    public void showIcon(final Data data) {
+
+        Picasso.get().load(data.getImageUrl()).into((ImageView) findViewById(R.id.Weather_icon));
 
     }
 
 }
-
