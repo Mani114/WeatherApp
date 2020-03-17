@@ -1,0 +1,42 @@
+package com.example.myapplication.ui;
+
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import com.example.myapplication.data.SettingsProvider;
+
+public class SettingsActivityPresenter {
+
+    private SettingsActivityView settingsActivityView;
+    private SettingsProvider     settingsProvider;
+
+
+    SettingsActivityPresenter(final SettingsActivityView settingsActivityView, final SettingsProvider settingsProvider) {
+        this.settingsActivityView = settingsActivityView;
+        this.settingsProvider = settingsProvider;
+    }
+
+
+    public void onCreate() {
+        settingsActivityView.setCheckBoxWind();
+        settingsActivityView.setCheckBoxFahrenheit();
+        settingsActivityView.setCheckBoxDelay();
+
+    }
+
+    void onTemperatureCheckBoxChanged(final boolean isChecked) {
+        settingsProvider.saveTemp(isChecked);
+
+    }
+
+    void onWindCheckBoxChanged(final boolean isChecked) {
+        settingsProvider.saveWind(isChecked);
+
+    }
+
+    void onDelayCheckBoxChanged(final boolean isChecked) {
+        settingsProvider.saveDelay(isChecked);
+
+    }
+
+}

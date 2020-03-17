@@ -22,12 +22,7 @@ import com.example.myapplication.data.response.Weather;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
 
-import java.util.List;
-import java.util.Objects;
-
-import static android.view.View.VISIBLE;
 
 
 public class WeatherActivity extends AppCompatActivity implements WeatherActivityView {
@@ -47,8 +42,6 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
         mProgressBar = findViewById(R.id.progressBar_cyclic);
         showProgressBar(true);
         String cityName = getIntent().getStringExtra("City");
-
-        // getData(cityName);
         showCity(cityName);
 
 
@@ -57,37 +50,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
 
 
     }
-/*
-    private void getData(final String city) {
 
-        WeatherProvider weatherProvider = new WeatherProviderImpl();
-        weatherProvider.getData(city, new WeatherProvider.DataCallback() {
-            @Override
-            public void onData(final Data data) {
-                showData(data);
-                showTime();
-                showProgressBar(false);
-
-            }
-
-            @Override
-            public void onFail() {
-                findViewById(R.id.Network_connection).setVisibility(VISIBLE);
-                showProgressBar(false);
-
-            }
-
-        }, settingsProvider.withDelay());
-
-    }
-*/
-
-    /*
-        @SuppressLint("SetTextI18n")
-        private void showData(Data data) {
-
-        }
-    */
     public void showCity(String cityName) {
 
         TextView textView = findViewById(R.id.city_name);

@@ -1,16 +1,10 @@
 package com.example.myapplication.ui;
 
-import com.example.myapplication.WeatherRepository;
 import com.example.myapplication.data.SettingsProvider;
 import com.example.myapplication.data.WeatherProvider;
-import com.example.myapplication.data.response.Weather;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 
 public class WeatherActivityPresenterTest {

@@ -37,6 +37,9 @@
     <string name="settings">Settings</string>
     <string name="fahrenheit">Fahrenheit</string>
     <string name="mintemp">MinTemp</string>
+    <string name="title_activity_settingpresenter" />
+    <string name="title_activity_setting_presenter" />
+    <string name="title_activity_weather_presenter" />
 
 
 </resources>

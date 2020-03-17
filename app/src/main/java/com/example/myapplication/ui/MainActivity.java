@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     public SettingsProvider settingsProvider;
+    public MainActivityPresenter mainActivityPresenter;
 
     public void launchWeatherActivity(String city) {
         Intent intent = new Intent(this, WeatherActivity.class);
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mainActivityPresenter = new MainActivityPresenter((MainActivityview) this, settingsProvider);
 
 
         settingsProvider = new SettingsProvider(getApplicationContext());

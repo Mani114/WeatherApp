@@ -1,34 +1,18 @@
 package com.example.myapplication.ui;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-
-import com.example.myapplication.R;
-import com.example.myapplication.WeatherRepository;
 import com.example.myapplication.data.SettingsProvider;
 import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
-import com.example.myapplication.data.WeatherProviderImpl;
 import com.example.myapplication.data.WindConverter;
-import com.example.myapplication.data.response.Weather;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-import java.util.Objects;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class WeatherActivityPresenter {
 
-    private final WeatherActivityView view;
-    private       WeatherProvider     weatherProvider;
-    private       SettingsProvider    settingsProvider;
+    private WeatherActivityView view;
+    private WeatherProvider     weatherProvider;
+    private SettingsProvider    settingsProvider;
 
 
-    WeatherActivityPresenter(WeatherActivityView view, final WeatherProvider weatherProvider, final SettingsProvider settingsProvider) {
+    WeatherActivityPresenter(final WeatherActivityView view, final WeatherProvider weatherProvider, final SettingsProvider settingsProvider) {
         this.view = view;
         this.weatherProvider = weatherProvider;
         this.settingsProvider = settingsProvider;

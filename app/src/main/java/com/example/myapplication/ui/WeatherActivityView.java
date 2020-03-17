@@ -22,5 +22,4 @@ public interface WeatherActivityView {
 
     void showIcon(Data data);
 
-
 }
