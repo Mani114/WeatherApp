@@ -1,7 +1,6 @@
 package com.example.myapplication.ui;
 
 import com.example.myapplication.data.SettingsProvider;
-import com.example.myapplication.data.response.Main;
 
 public class MainActivityPresenter {
 

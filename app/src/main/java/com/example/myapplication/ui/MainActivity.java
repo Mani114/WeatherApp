@@ -148,5 +148,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void showProgressBar (String city, boolean show, int viewId ){
+
+
+    }
+
+    void showSubtitle(String temperature, int viewId){
+
+    }
+
 }
 

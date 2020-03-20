@@ -36,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
 
-                Log.d("onCheckedChanged", String.valueOf(isChecked));
+              //  Log.d("onCheckedChanged", String.valueOf(isChecked));
                 settingsActivityPresenter.onTemperatureCheckBoxChanged(isChecked);
             }
         });
@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                Log.d("onCheckedChanged", String.valueOf(isChecked));
+              //  Log.d("onCheckedChanged", String.valueOf(isChecked));
                 settingsActivityPresenter.onWindCheckBoxChanged(isChecked);
             }
         });
@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
         checkBoxDelay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                Log.d("onCheckedChanged", String.valueOf(isChecked));
+               // Log.d("onCheckedChanged", String.valueOf(isChecked));
                 settingsActivityPresenter.onDelayCheckBoxChanged(isChecked);
             }
         });
