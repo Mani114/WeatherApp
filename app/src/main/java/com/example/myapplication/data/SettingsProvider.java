@@ -16,13 +16,11 @@ public class SettingsProvider {
 
     }
 
-    public boolean saveTemp(boolean b) {
+    public void saveTemp(boolean b) {
 
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean(TEMP_KEY, b);
         editor.apply();
-
-        return b;
     }
 
     public void saveWind(boolean b) {

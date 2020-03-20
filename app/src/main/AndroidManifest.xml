@@ -30,12 +30,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myapplication.ui.MainActivity" />
         </activity>
-        <activity
-            android:name=".ui.WeatherActivityPresenter"
-            android:label="@string/title_activity_weather_presenter" />
-        <activity
-            android:name=".ui.SettingsActivityPresenter"
-            android:label="@string/title_activity_setting_presenter" />
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

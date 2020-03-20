@@ -1,14 +1,34 @@
 package com.example.myapplication.ui;
 
 import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.response.Main;
 
 public class MainActivityPresenter {
 
-    private MainActivityview mainActivityview;
+    private MainActivityView mainActivityView;
     private SettingsProvider settingsProvider;
+    private MainActivity mainActivity;
 
-    public MainActivityPresenter(final MainActivityview mainActivityview, final SettingsProvider settingsProvider) {
-        this.mainActivityview = mainActivityview;
+    public MainActivityPresenter(final MainActivityView mainActivityview, final SettingsProvider settingsProvider, final MainActivity mainActivity) {
+        this.mainActivityView = mainActivityview;
         this.settingsProvider = settingsProvider;
+        this.mainActivity = mainActivity;
     }
+
+    public void onCreate() {
+
+    }
+
+    void onCityClicked (String city) {
+        mainActivity.launchWeatherActivity(city);
+
+    }
+
+    void onItemSelected(){
+
+
+
+    }
+
+
 }

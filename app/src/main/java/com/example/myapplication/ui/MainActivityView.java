@@ -1,4 +1,6 @@
 package com.example.myapplication.ui;
 
-public interface MainActivityview {
+public interface MainActivityView {
+
+
 }

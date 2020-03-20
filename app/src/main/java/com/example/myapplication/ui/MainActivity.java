@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        mainActivityPresenter = new MainActivityPresenter((MainActivityview) this, settingsProvider);
+     mainActivityPresenter = new MainActivityPresenter((MainActivityView) this, settingsProvider, this);
 
 
         settingsProvider = new SettingsProvider(getApplicationContext());
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchWeatherActivity("Tehran");
+                mainActivityPresenter.onCityClicked("Tehran");
             }
         });
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchWeatherActivity("Stockholm");
+                mainActivityPresenter.onCityClicked("Stockholm");
             }
         });
 
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchWeatherActivity("Milan");
+                mainActivityPresenter.onCityClicked("Milan");
             }
         });
         CityTemperatureView view3 = findViewById(R.id.view3);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchWeatherActivity("New York");
+                mainActivityPresenter.onCityClicked("New York");
             }
         });
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                launchWeatherActivity("Beijing");
+                mainActivityPresenter.onCityClicked("Beijing");
             }
         });
 
