@@ -1,7 +1,5 @@
 package com.example.myapplication.ui;
 
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import com.example.myapplication.data.SettingsProvider;
 

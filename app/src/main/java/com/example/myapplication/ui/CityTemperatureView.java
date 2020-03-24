@@ -13,6 +13,8 @@ import com.example.myapplication.R;
 
 public class CityTemperatureView extends FrameLayout {
 
+
+
     private TextView    mTitle;
     private ProgressBar mProgressBar;
     private TextView    mSubTitle;

@@ -1,9 +1,11 @@
 package com.example.myapplication.ui;
 
 import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.response.Main;
 
 public class MainActivityPresenter {
 
+    private CityTemperatureView cityTemperatureView;
     private MainActivityView mainActivityView;
     private SettingsProvider settingsProvider;
     private MainActivity mainActivity;
@@ -15,6 +17,9 @@ public class MainActivityPresenter {
     }
 
     public void onCreate() {
+        onShowProgressBar();
+
+
 
     }
 
@@ -23,11 +28,16 @@ public class MainActivityPresenter {
 
     }
 
-    void onItemSelected(){
+    void onItemSelected() {
 
+    }
+
+    void onShowProgressBar(String city, boolean show, int viewId){
+        mainActivity.showProgressBar(city, false, viewId);
 
 
     }
+
 
 
 }

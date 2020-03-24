@@ -2,6 +2,7 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +20,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    public SettingsProvider settingsProvider;
+
+    public CityTemperatureView   cityTemperatureView;
+    public SettingsProvider      settingsProvider;
     public MainActivityPresenter mainActivityPresenter;
+
 
     public void launchWeatherActivity(String city) {
         Intent intent = new Intent(this, WeatherActivity.class);
@@ -33,11 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-     mainActivityPresenter = new MainActivityPresenter((MainActivityView) this, settingsProvider, this);
-
-
+        cityTemperatureView = new CityTemperatureView(this, (AttributeSet) cityTemperatureView);
+        mainActivityPresenter = new MainActivityPresenter((MainActivityView) this, settingsProvider, this);
         settingsProvider = new SettingsProvider(getApplicationContext());
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -148,12 +151,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void showProgressBar (String city, boolean show, int viewId ){
-
+    void showProgressBar(String city, boolean show, int viewId) {
+        cityTemperatureView.showProgressbar(show);
 
     }
 
-    void showSubtitle(String temperature, int viewId){
+    void showSubtitle(String temperature, int viewId) {
+         cityTemperatureView.setSubtitle(temperature);
 
     }
 
