@@ -18,10 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityView {
 
 
-    public CityTemperatureView   cityTemperatureView;
+   // public CityTemperatureView   cityTemperatureView;
     public SettingsProvider      settingsProvider;
     public MainActivityPresenter mainActivityPresenter;
 
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cityTemperatureView = new CityTemperatureView(this, (AttributeSet) cityTemperatureView);
-        mainActivityPresenter = new MainActivityPresenter((MainActivityView) this, settingsProvider, this);
+        //cityTemperatureView = new CityTemperatureView(this, (AttributeSet) cityTemperatureView);
+        mainActivityPresenter = new MainActivityPresenter((WeatherProvider) this, settingsProvider, this);
         settingsProvider = new SettingsProvider(getApplicationContext());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -105,13 +105,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                getCurrentDataNew("Tehran", R.id.view1);
-                getCurrentDataNew("Stockholm", R.id.view2);
-                getCurrentDataNew("Milan", R.id.view3);
-                getCurrentDataNew("New York", R.id.view4);
-                getCurrentDataNew("Beijing", R.id.view5);
-                break;
+                mainActivityPresenter.onRefreshButtonClicked();
 
+                break;
 
             case R.id.action_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
@@ -125,39 +121,18 @@ public class MainActivity extends AppCompatActivity {
         final CityTemperatureView customView = findViewById(viewId);
         customView.showProgressbar(true);
 
+    }
 
-        WeatherProvider weatherProvider = new WeatherProviderImpl();
-        weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
-            @Override
-            public void onResult(final double temperature) {
-                // onWeatherResult(temperature, viewId, progressBarId);
-                customView.showProgressbar(false);
-                if (settingsProvider.getTemperatureMetric()) {
-                    customView.setSubtitle(TemperatureConverter.getFahrenheit(temperature));
-                } else {
-                    customView.setSubtitle(TemperatureConverter.getCelsius(temperature));
-                }
-
-            }
-
-            @Override
-            public void onFailure() {
-                //   onWeatherFail(viewId, progressBarId);
-                customView.showProgressbar(false);
-
-            }
-
-        }, settingsProvider.withDelay());
+    public void showProgressBar(String city, boolean show, int viewId) {
+        findViewById(R.id.view1);
+        mainActivityPresenter.onShowProgressBar(city,show,viewId);
 
     }
 
-    void showProgressBar(String city, boolean show, int viewId) {
-        cityTemperatureView.showProgressbar(show);
+    public void showSubtitle(String temperature, int viewId) {
+        findViewById(R.id.view1);
+        mainActivityPresenter.onShowSubtitle(temperature, viewId);
 
-    }
-
-    void showSubtitle(String temperature, int viewId) {
-         cityTemperatureView.setSubtitle(temperature);
 
     }
 
