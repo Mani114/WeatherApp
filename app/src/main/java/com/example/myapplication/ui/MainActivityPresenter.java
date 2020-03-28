@@ -26,14 +26,22 @@ public class MainActivityPresenter {
     }
 
     void onRefreshButtonClicked(){
-        getCurrentDataNew("Tehran", R.id.view1);
-        getCurrentDataNew("Stockholm", R.id.view2);
-        getCurrentDataNew("Milan", R.id.view3);
-        getCurrentDataNew("New York", R.id.view4);
-        getCurrentDataNew("Beijing", R.id.view5);
+        getCurrentData("Tehran", R.id.view1);
+        getCurrentData("Stockholm", R.id.view2);
+        getCurrentData("Milan", R.id.view3);
+        getCurrentData("New York", R.id.view4);
+        getCurrentData("Beijing", R.id.view5);
     }
 
-    private void getCurrentDataNew(final String city, final int viewId) {
+    void onSettingsClicked(){
+        mainActivityView.launchSettingsActivity();
+    }
+
+
+    private void getCurrentData(final String city, final int viewId) {
+        //final CityTemperatureView customView = findViewById(viewId);
+        //customView.showProgressbar(true);
+
         WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
@@ -64,9 +72,6 @@ public class MainActivityPresenter {
 
     }
 
-    void onItemSelected() {
-
-    }
 
     void onShowProgressBar(String city, boolean show, int viewId){
         mainActivityView.showProgressBar(city, false, viewId);

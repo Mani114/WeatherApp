@@ -8,5 +8,7 @@ public interface MainActivityView {
 
     void launchWeatherActivity (String city);
 
+    void launchSettingsActivity ();
+
 
 }

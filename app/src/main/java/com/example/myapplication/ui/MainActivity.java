@@ -24,11 +24,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
    // public CityTemperatureView   cityTemperatureView;
     public SettingsProvider      settingsProvider;
     public MainActivityPresenter mainActivityPresenter;
+    public WeatherProvider weatherProvider;
 
 
     public void launchWeatherActivity(String city) {
         Intent intent = new Intent(this, WeatherActivity.class);
         intent.putExtra("City", city);
+        startActivity(intent);
+    }
+
+    public void launchSettingsActivity(){
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
@@ -38,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         setContentView(R.layout.activity_main);
 
         //cityTemperatureView = new CityTemperatureView(this, (AttributeSet) cityTemperatureView);
-        mainActivityPresenter = new MainActivityPresenter((WeatherProvider) this, settingsProvider, this);
         settingsProvider = new SettingsProvider(getApplicationContext());
+        mainActivityPresenter = new MainActivityPresenter( weatherProvider, settingsProvider, this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,8 +116,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
                 break;
 
             case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                mainActivityPresenter.onSettingsClicked();
+
                 break;
         }
         return true;
@@ -119,19 +125,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     private void getCurrentDataNew(final String city, final int viewId) {
         final CityTemperatureView customView = findViewById(viewId);
-        customView.showProgressbar(true);
+       customView.showProgressbar(true);
 
     }
 
     public void showProgressBar(String city, boolean show, int viewId) {
-        findViewById(R.id.view1);
-        mainActivityPresenter.onShowProgressBar(city,show,viewId);
+        final CityTemperatureView customView = findViewById(viewId);
+        customView.showProgressbar(show);
 
     }
 
     public void showSubtitle(String temperature, int viewId) {
-        findViewById(R.id.view1);
-        mainActivityPresenter.onShowSubtitle(temperature, viewId);
+        final CityTemperatureView customView = findViewById(viewId);
+        customView.setSubtitle(temperature);
 
 
     }
