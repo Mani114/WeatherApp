@@ -45,7 +45,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
         showCity(cityName);
 
 
-        presenter = new WeatherActivityPresenter(this, weatherProvider, settingsProvider);
+        presenter = new WeatherActivityPresenter(this, weatherProvider, settingsProvider, cityName);
         presenter.onCreate();
 
 

@@ -10,12 +10,16 @@ public class WeatherActivityPresenter {
     private WeatherActivityView view;
     private WeatherProvider     weatherProvider;
     private SettingsProvider    settingsProvider;
+    private String cityName;
 
 
-    WeatherActivityPresenter(final WeatherActivityView view, final WeatherProvider weatherProvider, final SettingsProvider settingsProvider) {
+
+    WeatherActivityPresenter(final WeatherActivityView view, final WeatherProvider weatherProvider, final SettingsProvider settingsProvider,
+                             final String cityName) {
         this.view = view;
         this.weatherProvider = weatherProvider;
         this.settingsProvider = settingsProvider;
+        this.cityName = cityName;
     }
 
     public void onCreate() {
@@ -25,7 +29,7 @@ public class WeatherActivityPresenter {
 
     void loadWeather() {
 
-        weatherProvider.getData("City", new WeatherProvider.DataCallback() {
+        weatherProvider.getData(cityName, new WeatherProvider.DataCallback() {
             @Override
             public void onData(final Data data) {
 

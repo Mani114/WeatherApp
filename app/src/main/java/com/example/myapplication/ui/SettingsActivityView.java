@@ -3,11 +3,11 @@ package com.example.myapplication.ui;
 public interface SettingsActivityView {
 
 
-    void setCheckBoxFahrenheit();
+    void setCheckBoxFahrenheit(boolean fahrenheitChecked);
 
-    void setCheckBoxWind();
+    void setCheckBoxWind(boolean windChecked);
 
-    void setCheckBoxDelay();
+    void setCheckBoxDelay(boolean delayChecked);
 
 
 }

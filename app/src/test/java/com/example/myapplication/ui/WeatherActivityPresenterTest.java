@@ -18,7 +18,7 @@ public class WeatherActivityPresenterTest {
         // SettingsProvider settingsProvider = new MockSettingsProvider
 
         // when (the actions we want to trigger),presenter gets instance of view
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null);
+        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null, cityName);
         presenter.loadWeather();
 
         // then (did it work or did it not work)
@@ -32,7 +32,7 @@ public class WeatherActivityPresenterTest {
         WeatherActivityView view = new MockView();
         WeatherProvider weatherProvider = new MockWeatherProvider(false);
 
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, (SettingsProvider) weatherProvider);
+        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, (SettingsProvider) weatherProvider, cityName);
         presenter.loadWeather();
 
         Assert.assertEquals(true, ((MockView) view).displayWeatherWithNoWeatherCalled);

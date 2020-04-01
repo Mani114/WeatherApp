@@ -23,6 +23,7 @@ public class MainActivityPresenter {
 
     public void onCreate() {
 
+
     }
 
     void onRefreshButtonClicked(){
@@ -40,7 +41,7 @@ public class MainActivityPresenter {
 
     private void getCurrentData(final String city, final int viewId) {
         //final CityTemperatureView customView = findViewById(viewId);
-        //customView.showProgressbar(true);
+         mainActivityView.showProgressBar(city, true, viewId);
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
@@ -74,7 +75,7 @@ public class MainActivityPresenter {
 
 
     void onShowProgressBar(String city, boolean show, int viewId){
-        mainActivityView.showProgressBar(city, false, viewId);
+        mainActivityView.showProgressBar(city, show, viewId);
 
 
     }

@@ -36,7 +36,6 @@ public class CityTemperatureView extends FrameLayout {
         setSubtitle(titleText);
 
         mProgressBar = findViewById(R.id.progressBar_cyclic);
-        //showProgressbar(false);
 
     }
 

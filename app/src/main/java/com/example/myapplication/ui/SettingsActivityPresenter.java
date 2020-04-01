@@ -16,9 +16,9 @@ public class SettingsActivityPresenter {
 
 
     public void onCreate() {
-        settingsActivityView.setCheckBoxWind();
-        settingsActivityView.setCheckBoxFahrenheit();
-        settingsActivityView.setCheckBoxDelay();
+        settingsActivityView.setCheckBoxWind(settingsProvider.getWind());
+        settingsActivityView.setCheckBoxFahrenheit(settingsProvider.getTemperatureMetric());
+        settingsActivityView.setCheckBoxDelay(settingsProvider.withDelay());
 
     }
 

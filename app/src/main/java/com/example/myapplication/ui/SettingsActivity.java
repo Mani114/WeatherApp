@@ -30,8 +30,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
     }
 
     @Override
-    public void setCheckBoxFahrenheit() {
+    public void setCheckBoxFahrenheit(boolean fahrenheitChecked) {
         final CheckBox checkBoxFahrenheit = findViewById(R.id.fahrenheit);
+        checkBoxFahrenheit.setChecked(fahrenheitChecked);
         checkBoxFahrenheit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
@@ -41,8 +42,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
     }
 
     @Override
-    public void setCheckBoxWind() {
+    public void setCheckBoxWind(boolean windChecked) {
         final CheckBox checkBoxWind = findViewById(R.id.wind);
+        checkBoxWind.setChecked(windChecked);
         checkBoxWind.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -54,8 +56,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
     }
 
     @Override
-    public void setCheckBoxDelay() {
+    public void setCheckBoxDelay(boolean delayChecked) {
         final CheckBox checkBoxDelay = findViewById(R.id.delay);
+        checkBoxDelay.setChecked(delayChecked);
         checkBoxDelay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {

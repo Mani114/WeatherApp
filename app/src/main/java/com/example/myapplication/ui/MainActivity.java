@@ -2,16 +2,14 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.SettingsProvider;
-import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
-import com.example.myapplication.data.WeatherProviderImpl;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements MainActivityView {
 
 
-   // public CityTemperatureView   cityTemperatureView;
     public SettingsProvider      settingsProvider;
     public MainActivityPresenter mainActivityPresenter;
     public WeatherProvider weatherProvider;
@@ -123,11 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         return true;
     }
 
-    private void getCurrentDataNew(final String city, final int viewId) {
-        final CityTemperatureView customView = findViewById(viewId);
-       customView.showProgressbar(true);
 
-    }
 
     public void showProgressBar(String city, boolean show, int viewId) {
         final CityTemperatureView customView = findViewById(viewId);
