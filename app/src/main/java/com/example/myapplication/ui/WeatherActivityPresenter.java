@@ -10,8 +10,7 @@ public class WeatherActivityPresenter {
     private WeatherActivityView view;
     private WeatherProvider     weatherProvider;
     private SettingsProvider    settingsProvider;
-    private String cityName;
-
+    private String              cityName;
 
 
     WeatherActivityPresenter(final WeatherActivityView view, final WeatherProvider weatherProvider, final SettingsProvider settingsProvider,

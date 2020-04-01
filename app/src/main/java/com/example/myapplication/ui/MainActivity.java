@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.SettingsProvider;
-import com.example.myapplication.data.WeatherProvider;
 
 
 import androidx.annotation.NonNull;
@@ -21,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     public SettingsProvider      settingsProvider;
     public MainActivityPresenter mainActivityPresenter;
-    public WeatherProvider weatherProvider;
-
 
     public void launchWeatherActivity(String city) {
         Intent intent = new Intent(this, WeatherActivity.class);
@@ -30,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         startActivity(intent);
     }
 
-    public void launchSettingsActivity(){
+    public void launchSettingsActivity() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
@@ -40,9 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //cityTemperatureView = new CityTemperatureView(this, (AttributeSet) cityTemperatureView);
         settingsProvider = new SettingsProvider(getApplicationContext());
-        mainActivityPresenter = new MainActivityPresenter( weatherProvider, settingsProvider, this);
+        mainActivityPresenter = new MainActivityPresenter(settingsProvider, this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -119,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         }
         return true;
     }
-
 
 
     public void showProgressBar(String city, boolean show, int viewId) {

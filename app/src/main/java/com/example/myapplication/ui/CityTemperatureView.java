@@ -14,7 +14,6 @@ import com.example.myapplication.R;
 public class CityTemperatureView extends FrameLayout {
 
 
-
     private TextView    mTitle;
     private ProgressBar mProgressBar;
     private TextView    mSubTitle;
@@ -54,14 +53,6 @@ public class CityTemperatureView extends FrameLayout {
     public void showProgressbar(boolean visible) {
         mProgressBar.setVisibility(visible ? View.VISIBLE : View.GONE);
         mSubTitle.setVisibility(visible ? View.GONE : View.VISIBLE);
-/*
-        if (visible) {
-            mSubTitle.setVisibility(INVISIBLE);
-        } else {
-            mSubTitle.setVisibility(VISIBLE);
-
-       }
-        */
 
     }
 

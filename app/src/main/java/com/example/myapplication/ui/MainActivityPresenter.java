@@ -5,28 +5,20 @@ import com.example.myapplication.data.SettingsProvider;
 import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
-import com.example.myapplication.data.response.Main;
 
 public class MainActivityPresenter {
 
     private MainActivityView mainActivityView;
     private SettingsProvider settingsProvider;
-    private WeatherProvider weatherProvider;
 
 
-
-    public MainActivityPresenter(final WeatherProvider weatherProvider, final SettingsProvider settingsProvider, final MainActivityView mainActivityView) {
+    MainActivityPresenter(final SettingsProvider settingsProvider, final MainActivityView mainActivityView) {
         this.mainActivityView = mainActivityView;
         this.settingsProvider = settingsProvider;
-        this.weatherProvider = weatherProvider;
     }
 
-    public void onCreate() {
 
-
-    }
-
-    void onRefreshButtonClicked(){
+    void onRefreshButtonClicked() {
         getCurrentData("Tehran", R.id.view1);
         getCurrentData("Stockholm", R.id.view2);
         getCurrentData("Milan", R.id.view3);
@@ -34,20 +26,18 @@ public class MainActivityPresenter {
         getCurrentData("Beijing", R.id.view5);
     }
 
-    void onSettingsClicked(){
+    void onSettingsClicked() {
         mainActivityView.launchSettingsActivity();
     }
 
 
     private void getCurrentData(final String city, final int viewId) {
-        //final CityTemperatureView customView = findViewById(viewId);
-         mainActivityView.showProgressBar(city, true, viewId);
+        mainActivityView.showProgressBar(city, true, viewId);
 
         WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
             public void onResult(final double temperature) {
-                // onWeatherResult(temperature, viewId, progressBarId);
                 mainActivityView.showProgressBar(city, false, viewId);
                 if (settingsProvider.getTemperatureMetric()) {
                     mainActivityView.showSubtitle(TemperatureConverter.getFahrenheit(temperature), viewId);
@@ -59,7 +49,6 @@ public class MainActivityPresenter {
 
             @Override
             public void onFailure() {
-                //   onWeatherFail(viewId, progressBarId);
                 mainActivityView.showProgressBar(city, false, viewId);
 
             }
@@ -68,23 +57,10 @@ public class MainActivityPresenter {
 
     }
 
-    void onCityClicked (String city) {
+    void onCityClicked(String city) {
         mainActivityView.launchWeatherActivity(city);
 
     }
-
-
-    void onShowProgressBar(String city, boolean show, int viewId){
-        mainActivityView.showProgressBar(city, show, viewId);
-
-
-    }
-
-    void onShowSubtitle(String temperature, int viewId){
-        mainActivityView.showSubtitle(temperature, viewId);
-
-    }
-
 
 
 }

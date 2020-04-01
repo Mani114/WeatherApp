@@ -6,9 +6,9 @@ public interface MainActivityView {
 
     void showSubtitle(String temperature, int viewId);
 
-    void launchWeatherActivity (String city);
+    void launchWeatherActivity(String city);
 
-    void launchSettingsActivity ();
+    void launchSettingsActivity();
 
 
 }

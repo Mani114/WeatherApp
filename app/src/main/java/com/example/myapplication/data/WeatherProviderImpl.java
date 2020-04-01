@@ -41,7 +41,7 @@ public class WeatherProviderImpl implements WeatherProvider {
                 assert response.body() != null;
                 final double temp = response.body().getMain().getTemp();
 
-                if (withDelay){
+                if (withDelay) {
 
                     new Handler().postDelayed(new Runnable() {
                         @Override

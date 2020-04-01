@@ -45,7 +45,7 @@ public class SettingsProvider {
         return pref.getBoolean(WIND_KEY, false);
     }
 
-    public boolean withDelay (){
+    public boolean withDelay() {
         return pref.getBoolean(DELAY_KEY, false);
     }
 

@@ -3,9 +3,7 @@ package com.example.myapplication.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,15 +12,9 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.data.DateProvider;
 import com.example.myapplication.data.SettingsProvider;
-import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
-import com.example.myapplication.data.WindConverter;
-import com.example.myapplication.data.response.Weather;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-
 
 
 public class WeatherActivity extends AppCompatActivity implements WeatherActivityView {
