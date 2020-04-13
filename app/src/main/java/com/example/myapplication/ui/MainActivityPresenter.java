@@ -18,12 +18,13 @@ public class MainActivityPresenter {
     }
 
 
+
     void onRefreshButtonClicked() {
-        getCurrentData("Tehran", R.id.view1);
-        getCurrentData("Stockholm", R.id.view2);
-        getCurrentData("Milan", R.id.view3);
-        getCurrentData("New York", R.id.view4);
-        getCurrentData("Beijing", R.id.view5);
+        getCurrentData("Tehran", R.id.Tehran_View);
+        getCurrentData("Stockholm", R.id.Stockholm_View);
+        getCurrentData("Milan", R.id.Milan_View);
+        getCurrentData("New York", R.id.NewYork_View)  ;
+        getCurrentData("Beijing", R.id.Beijing_View);
     }
 
     void onSettingsClicked() {

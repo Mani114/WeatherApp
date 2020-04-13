@@ -43,54 +43,54 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.view1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Tehran_View).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mainActivityPresenter.onCityClicked("Tehran");
             }
         });
 
-        CityTemperatureView view1 = findViewById(R.id.view1);
+        CityTemperatureView view1 = findViewById(R.id.Tehran_View);
         view1.setTitle("Tehran");
 
-        findViewById(R.id.view2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Stockholm_View).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mainActivityPresenter.onCityClicked("Stockholm");
             }
         });
 
-        CityTemperatureView view2 = findViewById(R.id.view2);
+        CityTemperatureView view2 = findViewById(R.id.Stockholm_View);
         view2.setTitle("Stockholm");
 
-        findViewById(R.id.view3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Milan_View).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mainActivityPresenter.onCityClicked("Milan");
             }
         });
-        CityTemperatureView view3 = findViewById(R.id.view3);
+        CityTemperatureView view3 = findViewById(R.id.Milan_View);
         view3.setTitle("Milan");
 
 
-        findViewById(R.id.view4).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.NewYork_View).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mainActivityPresenter.onCityClicked("New York");
             }
         });
 
-        CityTemperatureView view4 = findViewById(R.id.view4);
+        CityTemperatureView view4 = findViewById(R.id.NewYork_View);
         view4.setTitle("New York");
 
-        findViewById(R.id.view5).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.Beijing_View).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mainActivityPresenter.onCityClicked("Beijing");
             }
         });
 
-        CityTemperatureView view5 = findViewById(R.id.view5);
+        CityTemperatureView view5 = findViewById(R.id.Beijing_View);
         view5.setTitle("Beijing");
 
     }

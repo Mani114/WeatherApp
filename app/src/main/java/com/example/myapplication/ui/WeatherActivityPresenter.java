@@ -22,6 +22,7 @@ public class WeatherActivityPresenter {
     }
 
     public void onCreate() {
+
         loadWeather();
     }
 
@@ -32,9 +33,13 @@ public class WeatherActivityPresenter {
             @Override
             public void onData(final Data data) {
 
+                view.showCity(cityName);
+
                 view.showTime();
 
                 view.showProgressBar(false);
+
+               // view.showProgressBar(true);
 
                 view.showDescription(data.getDescription());
 

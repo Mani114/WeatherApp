@@ -32,9 +32,9 @@ public class WeatherActivity extends AppCompatActivity implements WeatherActivit
         settingsProvider = new SettingsProvider(getApplicationContext());
         weatherProvider = new WeatherProviderImpl();
         mProgressBar = findViewById(R.id.progressBar_cyclic);
-        showProgressBar(true);
+       // showProgressBar(true);
         String cityName = getIntent().getStringExtra("City");
-        showCity(cityName);
+       // showCity(cityName);
 
 
         presenter = new WeatherActivityPresenter(this, weatherProvider, settingsProvider, cityName);

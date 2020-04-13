@@ -5,17 +5,28 @@ import com.example.myapplication.data.WeatherProvider;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class WeatherActivityPresenterTest {
+
+    @Mock
+    WeatherActivityPresenter weatherActivityPresenter;
+
 
     @Test
     public void shouldPassWeatherToView() {
 
-        // given (lets create initial conditions)
+        // given (lets create initial cond itions)
         WeatherActivityView view = new MockView();
         WeatherProvider weatherProvider = new MockWeatherProvider(true);
         // SettingsProvider settingsProvider = new MockSettingsProvider
+
+        Mockito.when(weatherActivityPresenter.loadWeather()).thenReturn();
+
 
         // when (the actions we want to trigger),presenter gets instance of view
         WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null, cityName);
@@ -45,6 +56,11 @@ public class WeatherActivityPresenterTest {
         public boolean displayWeatherWithNoWeatherCalled;
         boolean displayWeatherWithWeatherCalled;
 
+
+        @Override
+        public void showCity(final String cityName) {
+
+        }
 
         @Override
         public void showDescription(final String description) {

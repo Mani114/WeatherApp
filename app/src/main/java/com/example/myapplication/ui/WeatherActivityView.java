@@ -3,6 +3,8 @@ package com.example.myapplication.ui;
 
 public interface WeatherActivityView {
 
+    void showCity (String cityName);
+
     void showDescription(String description);
 
     void showHumidity(String humidity);
