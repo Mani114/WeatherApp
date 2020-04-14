@@ -25,12 +25,12 @@ public class WeatherActivityPresenterTest {
         WeatherProvider weatherProvider = new MockWeatherProvider(true);
         // SettingsProvider settingsProvider = new MockSettingsProvider
 
-        Mockito.when(weatherActivityPresenter.loadWeather()).thenReturn();
+      //  Mockito.when(weatherActivityPresenter.loadWeather()).thenReturn();
 
 
         // when (the actions we want to trigger),presenter gets instance of view
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null, cityName);
-        presenter.loadWeather();
+       // WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, null, cityName);
+        //presenter.loadWeather();
 
         // then (did it work or did it not work)
         Assert.assertEquals(true, ((MockView) view).displayWeatherWithWeatherCalled);
@@ -43,8 +43,8 @@ public class WeatherActivityPresenterTest {
         WeatherActivityView view = new MockView();
         WeatherProvider weatherProvider = new MockWeatherProvider(false);
 
-        WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, (SettingsProvider) weatherProvider, cityName);
-        presenter.loadWeather();
+       // WeatherActivityPresenter presenter = new WeatherActivityPresenter(view, weatherProvider, (SettingsProvider) weatherProvider, cityName);
+        //presenter.loadWeather();
 
         Assert.assertEquals(true, ((MockView) view).displayWeatherWithNoWeatherCalled);
 

@@ -10,11 +10,13 @@ public class MainActivityPresenter {
 
     private MainActivityView mainActivityView;
     private SettingsProvider settingsProvider;
+    private WeatherProvider weatherProvider;
 
 
-    MainActivityPresenter(final SettingsProvider settingsProvider, final MainActivityView mainActivityView) {
+    MainActivityPresenter(final SettingsProvider settingsProvider, final MainActivityView mainActivityView, final WeatherProvider weatherProvider) {
         this.mainActivityView = mainActivityView;
         this.settingsProvider = settingsProvider;
+        this.weatherProvider = weatherProvider;
     }
 
 
@@ -34,8 +36,6 @@ public class MainActivityPresenter {
 
     private void getCurrentData(final String city, final int viewId) {
         mainActivityView.showProgressBar(city, true, viewId);
-
-        WeatherProvider weatherProvider = new WeatherProviderImpl();
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
             public void onResult(final double temperature) {

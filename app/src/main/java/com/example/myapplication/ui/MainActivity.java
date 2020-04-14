@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.WeatherProviderImpl;
 
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         setContentView(R.layout.activity_main);
 
         settingsProvider = new SettingsProvider(getApplicationContext());
-        mainActivityPresenter = new MainActivityPresenter(settingsProvider, this);
+        mainActivityPresenter = new MainActivityPresenter(settingsProvider, this, new WeatherProviderImpl());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
