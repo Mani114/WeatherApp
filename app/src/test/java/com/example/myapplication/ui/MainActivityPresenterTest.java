@@ -64,8 +64,11 @@ public class MainActivityPresenterTest {
         mainActivityPresenter.onRefreshButtonClicked();
         verify(weatherProvider, atLeastOnce()).getCurrentTemperature(anyString(), (WeatherProvider.TemperatureCallback) any(), eq(false));
 
-
     }
+
+
+
+
 
 
 
