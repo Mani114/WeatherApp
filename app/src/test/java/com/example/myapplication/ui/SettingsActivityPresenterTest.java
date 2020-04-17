@@ -25,9 +25,21 @@ public class SettingsActivityPresenterTest {
 
     @Test
     public void onTemperatureCheckBoxChanged_changeMetrics_always(){
-        when(settingsProvider.getTemperatureMetric()).thenReturn(true);
         settingsActivityPresenter.onTemperatureCheckBoxChanged(true);
-        verify(settingsActivityView).setCheckBoxFahrenheit(true);
+        verify(settingsProvider).saveTemp(true);
+    }
+
+
+    @Test
+    public void onWindCheckBoxChanged_changeWindMetrics_always (){
+        settingsActivityPresenter.onWindCheckBoxChanged(true);
+        verify(settingsProvider).saveWind(true);
+    }
+
+    @Test
+    public void onDelayCheckBoxChanged_addDelay_always(){
+        settingsActivityPresenter.onDelayCheckBoxChanged(true);
+        verify(settingsProvider).saveDelay(true);
     }
 
 
