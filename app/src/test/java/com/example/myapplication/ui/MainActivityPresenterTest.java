@@ -1,12 +1,15 @@
 package com.example.myapplication.ui;
 
 import com.example.myapplication.data.SettingsProvider;
+import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import androidx.core.widget.TextViewCompat;
 
 import static org.mockito.Mockito.*;
 
@@ -64,6 +67,29 @@ public class MainActivityPresenterTest {
         mainActivityPresenter.onRefreshButtonClicked();
         verify(weatherProvider, atLeastOnce()).getCurrentTemperature(anyString(), (WeatherProvider.TemperatureCallback) any(), eq(false));
 
+    }
+
+    @Test
+    public void handleResult_showProgressBar_always(){
+        mainActivityPresenter.handleResult(10,"Tehran", 0);
+        verify(mainActivityView).showProgressBar("Tehran", false, 0);
+    }
+
+    @Test
+    public void handleResult_showSubtitle_fahrenheit(){
+       // mainActivityView.showSubtitle(TemperatureConverter.getFahrenheit(10), 1);
+        when(settingsProvider.getTemperatureMetric()).thenReturn(true);
+        mainActivityPresenter.handleResult(10, "Tehran", 1);
+        verify(mainActivityView).showSubtitle(TemperatureConverter.getFahrenheit(10), 1);
+    }
+
+
+    @Test
+    public void handleResult_showSubtitle_celsius(){
+       // mainActivityView.showSubtitle(TemperatureConverter.getCelsius(10), 1);
+        when(settingsProvider.getTemperatureMetric()).thenReturn(false);
+        mainActivityPresenter.handleResult(10,"Tehran", 1);
+        verify(mainActivityView).showSubtitle(TemperatureConverter.getCelsius(10), 1);
     }
 
 

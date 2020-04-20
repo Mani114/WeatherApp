@@ -6,6 +6,8 @@ import com.example.myapplication.data.TemperatureConverter;
 import com.example.myapplication.data.WeatherProvider;
 import com.example.myapplication.data.WeatherProviderImpl;
 
+import androidx.annotation.VisibleForTesting;
+
 public class MainActivityPresenter {
 
     private MainActivityView mainActivityView;
@@ -39,12 +41,8 @@ public class MainActivityPresenter {
         weatherProvider.getCurrentTemperature(city, new WeatherProvider.TemperatureCallback() {
             @Override
             public void onResult(final double temperature) {
-                mainActivityView.showProgressBar(city, false, viewId);
-                if (settingsProvider.getTemperatureMetric()) {
-                    mainActivityView.showSubtitle(TemperatureConverter.getFahrenheit(temperature), viewId);
-                } else {
-                    mainActivityView.showSubtitle(TemperatureConverter.getCelsius(temperature), viewId);
-                }
+                handleResult(temperature, city, viewId);
+
 
             }
 
@@ -62,6 +60,19 @@ public class MainActivityPresenter {
         mainActivityView.launchWeatherActivity(city);
 
     }
+
+    @VisibleForTesting
+   protected void handleResult(final double temperature, String city, int viewId){
+        mainActivityView.showProgressBar(city, false, viewId);
+        if (settingsProvider.getTemperatureMetric()) {
+            mainActivityView.showSubtitle(TemperatureConverter.getFahrenheit(temperature), viewId);
+        } else {
+            mainActivityView.showSubtitle(TemperatureConverter.getCelsius(temperature), viewId);
+        }
+
+
+    }
+
 
 
 }
